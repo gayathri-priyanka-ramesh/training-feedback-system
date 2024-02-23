@@ -1,0 +1,119 @@
+<!-- --------------------------------------------------Main Modal Area-------------------------------------------------- -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <!-- --------------------------------------------------Modal Message Area-------------------------------------------------- -->
+        <div id="modalContent" *ngIf="noButton"></div>
+        <p *ngIf="!noButton">{{ modalMessage }}</p>
+        <!-- --------------------------------------------------Modal Message Area-------------------------------------------------- -->
+
+        <!-- --------------------------------------------------Modal Button Area-------------------------------------------------- -->
+        <div class="button-group d-flex">
+          <!-- -------------------------Modal Confirm Button------------------------- -->
+          <div class="button">
+            <!-- -------------------------Modal Confirm Button (Without Reconfirmation)------------------------- -->
+            <button
+              class="btn nav-item"
+              type="button"
+              data-bs-dismiss="modal"
+              [routerLink]="route"
+              *ngIf="!noButton && modalConfirmMessage && !noReconfirmModal"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdropConfirm"
+              (click)="onConfirmButtonClick()"
+            >
+              {{ modalConfirmMessage }}
+            </button>
+            <!-- -------------------------Modal Confirm Button (With Reconfirmation)------------------------- -->
+            <button
+              class="btn nav-item"
+              type="button"
+              data-bs-dismiss="modal"
+              [routerLink]="route"
+              *ngIf="!noButton && modalConfirmMessage && noReconfirmModal"
+              (click)="onConfirmButtonClick()"
+            >
+              {{ modalConfirmMessage }}
+            </button>
+          </div>
+          <!-- -------------------------Modal Button------------------------- -->
+          <div class="button">
+            <button
+              class="btn nav-item"
+              type="button"
+              data-bs-dismiss="modal"
+              [routerLink]="route"
+              [fragment]="fragment"
+              *ngIf="!noButton"
+            >
+              {{ modalButtonMessage }}
+            </button>
+          </div>
+        </div>
+        <!-- --------------------------------------------------End of Modal Button Area-------------------------------------------------- -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- --------------------------------------------------End of Main Modal Area-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Confirm Modal Area-------------------------------------------------- -->
+<div
+  class="modal fade"
+  id="staticBackdropConfirm"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <!-- --------------------------------------------------Confirm Modal Message Area-------------------------------------------------- -->
+        <div id="modalContent">
+          <p>{{ confirmModalMessage }}</p>
+        </div>
+        <!-- --------------------------------------------------End of Confirm Modal Message Area-------------------------------------------------- -->
+
+        <!-- --------------------------------------------------Confirm Modal Button Area-------------------------------------------------- -->
+        <div class="button-group d-flex">
+          <!-- -------------------------Confirm Modal Confirm Button------------------------- -->
+          <div class="button">
+            <button
+              class="btn nav-item"
+              type="button"
+              data-bs-dismiss="modal"
+              [routerLink]="confirmRoute"
+              [fragment]="confirmFragment"
+            >
+              {{ confirmModalConfirmMessage }}
+            </button>
+          </div>
+          <!-- -------------------------Confirm Modal Button------------------------- -->
+          <div class="button">
+            <button
+              class="btn nav-item"
+              type="button"
+              data-bs-dismiss="modal"
+              *ngIf="confirmModalButtonMessage"
+            >
+              {{ confirmModalButtonMessage }}
+            </button>
+          </div>
+        </div>
+        <!-- --------------------------------------------------End of Confirm Modal Button Area-------------------------------------------------- -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- --------------------------------------------------End of Confirm Modal Area-------------------------------------------------- -->

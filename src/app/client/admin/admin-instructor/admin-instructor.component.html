@@ -1,0 +1,54 @@
+<!-- --------------------------------------------------Main Area-------------------------------------------------- -->
+<main>
+  <h1 id="pageTitle">{{ requiredInstructor.instructorName }}</h1>
+  <!-- --------------------------------------------------Hero Section-------------------------------------------------- -->
+  <div class="item d-flex container-fluid">
+    <!-- -------------------------Ring Area------------------------- -->
+    <div class="item-info d-flex">
+      <app-data-ring [ringsData]="ringsData"></app-data-ring>
+    </div>
+    <!-- -------------------------End of Ring Area------------------------- -->
+
+    <!-- -------------------------Info Image------------------------- -->
+    <div class="item-img">
+      <img
+        src="../../../assets/img/instructor.jpg"
+        alt="{{ requiredInstructor.instructorName }}"
+        class="img-fluid"
+      />
+    </div>
+    <!-- -------------------------End of Info Image------------------------- -->
+  </div>
+  <!-- --------------------------------------------------End of Hero Section-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Ongoing Courses-------------------------------------------------- -->
+  <h2 id="ongoing-courses">Ongoing Courses:</h2>
+  <!-- -------------------------Cards------------------------- -->
+  <div class="courses row">
+    <div class="col" *ngFor="let course of ongoingCourses">
+      <app-course-card
+        [courseData]="course"
+        [isAdminInstructorOngoing]="isAdminInstructorOngoing"
+        [requiredInstructor]="requiredInstructor"
+      ></app-course-card>
+    </div>
+  </div>
+  <!-- -------------------------End of Cards------------------------- -->
+  <!-- --------------------------------------------------End of Ongoing Courses-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Upcoming Courses-------------------------------------------------- -->
+  <h2 id="upcoming-courses">Upcoming Courses:</h2>
+  <!-- -------------------------Cards------------------------- -->
+  <div class="courses row">
+    <div class="col" *ngFor="let course of upcomingCourses">
+      <app-course-card
+        [courseData]="course"
+        [isAdminInstructorUpcoming]="isAdminInstructorUpcoming"
+        [requiredInstructor]="requiredInstructor"
+      ></app-course-card>
+    </div>
+  </div>
+  <!-- -------------------------End of Cards------------------------- -->
+  <!-- --------------------------------------------------End of Upcoming Courses-------------------------------------------------- -->
+</main>
+<!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->

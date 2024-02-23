@@ -1,0 +1,58 @@
+<!-- --------------------------------------------------Main Area-------------------------------------------------- -->
+<main>
+  <h1 id="pageTitle">{{ requiredParticipant.participantName }}</h1>
+  <!-- --------------------------------------------------Hero Section-------------------------------------------------- -->
+  <div class="item d-flex container-fluid">
+    <!-- -------------------------Info Area------------------------- -->
+    <div class="item-info d-flex">
+      <!-- -------------------------Ring Area------------------------- -->
+      <div class="data-info d-flex">
+        <app-data-ring [ringsData]="ringsData"></app-data-ring>
+      </div>
+      <!-- -------------------------End of Ring Area------------------------- -->
+    </div>
+    <!-- -------------------------End of Info Area------------------------- -->
+
+    <!-- -------------------------Info Image------------------------- -->
+    <div class="item-img">
+      <img
+        src="../../../assets/img/participant.jfif"
+        alt="participant-image"
+        class="img-fluid"
+      />
+    </div>
+    <!-- -------------------------End of Info Image------------------------- -->
+  </div>
+  <!-- --------------------------------------------------End of Hero Section-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Enrolled Courses-------------------------------------------------- -->
+  <h2 id="enrolled-courses">Enrolled Courses</h2>
+  <!-- -------------------------Cards------------------------- -->
+  <div class="courses row">
+    <div class="col" *ngFor="let course of enrolledCourses">
+      <app-course-card
+        [courseData]="course"
+        [isAdminParticipantEnrolled]="isAdminParticipantEnrolled"
+        [requiredParticipant]="requiredParticipant"
+      ></app-course-card>
+    </div>
+  </div>
+  <!-- -------------------------End of Cards------------------------- -->
+  <!-- --------------------------------------------------End of Enrolled Courses-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Applications-------------------------------------------------- -->
+  <h2 id="applications">Applications</h2>
+  <!-- -------------------------Cards------------------------- -->
+  <div class="courses row">
+    <div class="col" *ngFor="let course of applicationCourses">
+      <app-course-card
+        [courseData]="course"
+        [isAdminParticipantApplication]="isAdminParticipantApplication"
+        [requiredParticipant]="requiredParticipant"
+      ></app-course-card>
+    </div>
+  </div>
+  <!-- -------------------------End of Card------------------------- -->
+  <!-- --------------------------------------------------End of Applications-------------------------------------------------- -->
+</main>
+<!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->

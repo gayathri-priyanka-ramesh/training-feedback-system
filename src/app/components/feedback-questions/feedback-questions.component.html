@@ -1,0 +1,260 @@
+<!-- --------------------------------------------------Feedback Question Form-------------------------------------------------- -->
+<div class="container-fluid">
+  <!-- --------------------------------------------------Question Form Area-------------------------------------------------- -->
+  <form
+    [formGroup]="questionsForm"
+    (ngSubmit)="onSubmit()"
+    class="feedback-form"
+  >
+    <!-- -------------------------Question Criteria------------------------- -->
+    <fieldset>
+      <legend class="float-none w-auto p-2 mx-1">Question Criteria</legend>
+      <div class="choices d-flex">
+        <!-- -------------------------Switches------------------------- -->
+        <div class="switches">
+          <!-- -------------------------Anonymous------------------------- -->
+          <div class="checkbox-switch form-check form-switch">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="anonymous"
+              name="anonymous"
+              formControlName="anonymous"
+              checked
+            />
+            <label class="form-check-label" for="anonymous"
+              >Enable Anonymous Feedback Option
+              <span class="mandate">*</span></label
+            >
+          </div>
+          <!-- -------------------------Additional Comment------------------------- -->
+          <div class="checkbox-switch form-check form-switch">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="additionalComment"
+              name="additionalComment"
+              formControlName="additionalComment"
+              checked
+            />
+            <label class="form-check-label" for="additionalComment"
+              >Enable Additional Comment Field
+              <span class="mandate">*</span></label
+            >
+          </div>
+        </div>
+        <!-- -------------------------End of Switches------------------------- -->
+
+        <!-- -------------------------Range Selection------------------------- -->
+        <div class="ranges">
+          <label
+            for="rating-range"
+            class="text-label form-label"
+            id="ratingArea"
+          >
+            Choose the Rating Range <span class="mandate">*</span>
+          </label>
+          <div class="range-options d-flex">
+            <!-- -------------------------Five------------------------- -->
+            <div class="form-check">
+              <input
+                class="checkbox-input"
+                type="radio"
+                name="ratingRange"
+                id="five"
+                value="five"
+                formControlName="ratingRange"
+              />
+              <label class="form-check-label mb-0" for="five">1 to 5</label>
+            </div>
+            <!-- -------------------------Ten------------------------- -->
+            <div class="form-check">
+              <input
+                class="checkbox-input"
+                type="radio"
+                name="ratingRange"
+                id="ten"
+                value="ten"
+                formControlName="ratingRange"
+              />
+              <label class="form-check-label mb-0" for="ten">1 to 10</label>
+            </div>
+          </div>
+          <!-- -------------------------Range Selection Warning------------------------- -->
+          <div
+            id="ratingWarning"
+            class="validation"
+            *ngIf="
+              questionsForm.get('ratingRange')?.invalid &&
+              questionsForm.get('ratingRange')?.touched
+            "
+          >
+            Choice of rating range is required
+          </div>
+        </div>
+        <!-- -------------------------End of Range Selection------------------------- -->
+      </div>
+    </fieldset>
+    <!-- -------------------------End of Question Criteria------------------------- -->
+
+    <!-- -------------------------Question Sets------------------------- -->
+    <div class="question-set d-flex" formArrayName="questionSets">
+      <fieldset
+        class="question-fieldset"
+        *ngFor="let questionSet of questionSets.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <legend class="float-none w-auto p-2 mx-1">
+          {{ legend[i] }}
+        </legend>
+        <!-- -------------------------Question Container------------------------- -->
+        <div class="question-container" formArrayName="questions">
+          <!-- -------------------------Question Field------------------------- -->
+          <div
+            class="mb-3 question-item"
+            *ngFor="
+              let question of getQuestionsArray(questionSet)?.controls;
+              let j = index
+            "
+            [formGroupName]="j"
+          >
+            <label for="tques1" class="text-label form-label"
+              >Enter Question <span class="mandate">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control mb-0"
+              name="questionText"
+              formControlName="questionText"
+              required
+            />
+            <!-- -------------------------Question Field Validation------------------------- -->
+            <div
+              class="emptyInputWarning validation mb-0"
+              *ngIf="
+                question.get('questionText')?.invalid &&
+                question.get('questionText')?.touched
+              "
+            >
+              Enter question in the empty input field
+            </div>
+            <!-- -------------------------End of Question Field Validation------------------------- -->
+
+            <!-- -------------------------Remove Question------------------------- -->
+            <button
+              type="button"
+              class="btn nav-item remove-question-btn py-0"
+              (click)="removeQuestion(i, j)"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+            >
+              Remove Question
+            </button>
+            <!-- -------------------------Remove Question Confirmation Modal------------------------- -->
+            <app-modal
+              [modalMessage]="modalMessage"
+              [modalConfirmMessage]="modalConfirmMessage"
+              [modalButtonMessage]="modalButtonMessage"
+              [noReconfirmModal]="noReconfirmModal"
+              (confirmButtonClick)="confirmRemove()"
+            ></app-modal>
+            <!-- -------------------------End of Remove Question------------------------- -->
+          </div>
+          <!-- -------------------------End of Question Field------------------------- -->
+        </div>
+        <!-- -------------------------End of Question Container------------------------- -->
+
+        <!-- -------------------------Add Question------------------------- -->
+        <div class="button-group d-flex">
+          <div class="button">
+            <button
+              type="button"
+              class="btn nav-item add-question-btn"
+              (click)="addQuestion(i)"
+            >
+              Add Question
+            </button>
+          </div>
+        </div>
+        <!-- -------------------------End of Add Question------------------------- -->
+      </fieldset>
+    </div>
+    <!-- -------------------------End of Question Sets------------------------- -->
+
+    <!-- -------------------------Form Buttons------------------------- -->
+    <div class="button-group d-flex">
+      <!-- -------------------------Reset------------------------- -->
+      <div class="button">
+        <button type="reset" class="btn nav-item">Reset</button>
+      </div>
+      <!-- -------------------------Submit------------------------- -->
+      <div class="button">
+        <button type="submit" class="btn nav-item" id="questionsSubmit">
+          Submit
+        </button>
+      </div>
+    </div>
+    <!-- -------------------------End of Form Buttons------------------------- -->
+  </form>
+  <!-- --------------------------------------------------Question Form Area-------------------------------------------------- -->
+</div>
+<!-- --------------------------------------------------Feedback Question Form-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Feedback Question Modal-------------------------------------------------- -->
+<!-- -------------------------Modal Trigger Button------------------------- -->
+<button
+  id="submitResult"
+  class="d-none"
+  type="button"
+  data-bs-toggle="modal"
+  data-bs-target="#submitForm"
+></button>
+<!-- -------------------------End of Modal Trigger Button------------------------- -->
+<!-- -------------------------Modal------------------------- -->
+<div
+  class="modal fade"
+  id="submitForm"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <!-- -------------------------Modal Message Area------------------------- -->
+        <p>{{ modalMessage }}</p>
+        <!-- -------------------------Modal Message Area------------------------- -->
+
+        <!-- -------------------------Modal Button Area------------------------- -->
+        <div class="button-group d-flex">
+          <div class="button">
+            <!-- -------------------------Modal Confirm Button------------------------- -->
+            <button
+              class="btn nav-item"
+              type="button"
+              data-bs-dismiss="modal"
+              *ngIf="validForm"
+              (click)="uploadQuestions()"
+            >
+              {{ modalConfirmMessage }}
+            </button>
+            <!-- -------------------------Modal Button------------------------- -->
+            <button
+              class="btn nav-item"
+              type="button"
+              *ngIf="!validForm"
+              data-bs-dismiss="modal"
+            >
+              {{ modalButtonMessage }}
+            </button>
+          </div>
+        </div>
+        <!-- --------------------------------------------------End of Modal Button Area-------------------------------------------------- -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- -------------------------End of Modal------------------------- -->
+<!-- --------------------------------------------------End of Feedback Question Modal-------------------------------------------------- -->

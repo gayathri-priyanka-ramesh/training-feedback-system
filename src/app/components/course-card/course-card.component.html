@@ -1,0 +1,159 @@
+<!-- --------------------------------------------------Course Card Area-------------------------------------------------- -->
+<div class="course card">
+  <img
+    src="{{ courseData.imgSrc }}"
+    class="card-img-top"
+    alt="{{ courseData.courseName }}"
+    class="img-fluid"
+  />
+
+  <div class="card-body">
+    <!-- -------------------------Admin (Participant - Enrolled)------------------------- -->
+    <h3 class="card-title" *ngIf="isAdminParticipantEnrolled">
+      <a
+        [routerLink]="[
+          '/admin/home/participant',
+          requiredParticipant.id,
+          requiredParticipant.participantName,
+          'enrolledCourse',
+          courseData.id,
+          courseData.courseName
+        ]"
+        fragment="pageTitle"
+        class="stretched-link"
+        >{{ courseData.courseName }}</a
+      >
+    </h3>
+    <!-- -------------------------End of Admin (Participant - Enrolled)------------------------- -->
+
+    <!-- -------------------------Admin (Participant - Applied)------------------------- -->
+    <h3 class="card-title" *ngIf="isAdminParticipantApplication">
+      <a
+        [routerLink]="[
+          '/admin/home/participant',
+          requiredParticipant.id,
+          requiredParticipant.participantName,
+          'application',
+          courseData.id,
+          courseData.courseName
+        ]"
+        fragment="pageTitle"
+        class="stretched-link"
+        >{{ courseData.courseName }}</a
+      >
+    </h3>
+    <!-- -------------------------End of Admin (Participant - Applied)------------------------- -->
+
+    <!-- -------------------------Admin (Instructor - Ongoing)------------------------- -->
+    <h3 class="card-title" *ngIf="isAdminInstructorOngoing">
+      <a
+        [routerLink]="[
+          '/admin/home/instructor',
+          requiredInstructor.id,
+          requiredInstructor.instructorName,
+          'ongoingCourse',
+          courseData.id,
+          courseData.courseName
+        ]"
+        fragment="pageTitle"
+        class="stretched-link"
+        >{{ courseData.courseName }}</a
+      >
+    </h3>
+    <!-- -------------------------End of Admin (Instructor - Ongoing)------------------------- -->
+
+    <!-- -------------------------Admin (Instructor - Upcoming)------------------------- -->
+    <h3 class="card-title" *ngIf="isAdminInstructorUpcoming">
+      <a
+        [routerLink]="[
+          '/admin/home/instructor',
+          requiredInstructor.id,
+          requiredInstructor.instructorName,
+          'upcomingCourse',
+          courseData.id,
+          courseData.courseName
+        ]"
+        fragment="pageTitle"
+        class="stretched-link"
+        >{{ courseData.courseName }}</a
+      >
+    </h3>
+    <!-- -------------------------End of Admin (Instructor - Upcoming)------------------------- -->
+
+    <!-- -------------------------Instructor (Ongoing)------------------------- -->
+    <ng-container *ngIf="isOngoingCourse">
+      <p class="card-text">
+        <b>No. of Participants:</b> {{ ongoingCourseData.participants }}
+      </p>
+      <p class="card-text">
+        <b>Feedback Received:</b> {{ ongoingCourseData.feedbackReceived }}
+      </p>
+      <app-progress-bar
+        [progressValue]="ongoingCourseData.progress"
+      ></app-progress-bar>
+    </ng-container>
+    <!-- -------------------------End of Instructor (Ongoing)------------------------- -->
+
+    <!-- -------------------------Participant / Instructor------------------------- -->
+    <h3
+      class="card-title"
+      *ngIf="
+        !isAdminParticipantEnrolled &&
+        !isAdminParticipantApplication &&
+        !isAdminInstructorOngoing &&
+        !isAdminInstructorUpcoming
+      "
+    >
+      <a
+        [routerLink]="[courseData.route, courseData.id, courseData.courseName]"
+        class="stretched-link"
+        fragment="pageTitle"
+        >{{ courseData.courseName }}</a
+      >
+    </h3>
+    <!-- -------------------------End of Participant / Instructor------------------------- -->
+
+    <!-- -------------------------Instructor (Upcoming)------------------------- -->
+    <ng-container *ngIf="isUpcomingCourse">
+      <p class="card-text">
+        <b>Start Date:</b> {{ upcomingCourseData.startDate }}
+      </p>
+      <p class="card-text">
+        <b>No. of Participants:</b> {{ upcomingCourseData.participantCount }}
+      </p>
+      <p class="card-text" *ngIf="isAdminInstructorUpcoming">
+        <b>Applicants:</b> {{ upcomingCourseData.applicantCount }}
+      </p>
+      <p class="card-text"><b>Status:</b> {{ upcomingCourseData.status }}</p>
+    </ng-container>
+    <!-- -------------------------End of Instructor (Upcoming)------------------------- -->
+
+    <!-- -------------------------Participant (Applied / Trending)------------------------- -->
+    <ng-container *ngIf="isAppliedTrendingCourse">
+      <p class="card-text">
+        <b>Instructor:</b> {{ appliedTrendingCourseData.instructorName }}
+      </p>
+      <p class="card-text">
+        <b>Start Date:</b> {{ appliedTrendingCourseData.startDate }}
+      </p>
+      <p class="rating card-text">
+        <span *ngFor="let star of starArray"
+          ><i class="fa-solid fa-star"></i
+        ></span>
+      </p>
+    </ng-container>
+    <!-- -------------------------End of Participant (Applied / Trending)------------------------- -->
+
+    <!-- ------------------------Participant (Enrolled)------------------------- -->
+    <ng-container *ngIf="isEnrolledCourse">
+      <p class="card-text">
+        <b>Instructor:</b> {{ enrolledCourseData.instructorName }}
+      </p>
+      <app-progress-bar
+        [progressValue]="enrolledCourseData.progress"
+      ></app-progress-bar>
+    </ng-container>
+    <!-- -------------------------End of Participant (Enrolled)------------------------- -->
+  </div>
+</div>
+<!-- --------------------------------------------------End of Course Card Area-------------------------------------------------- -->

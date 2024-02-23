@@ -1,0 +1,172 @@
+<!-- --------------------------------------------------Main Area-------------------------------------------------- -->
+<main>
+  <!-- --------------------------------------------------Hero Section-------------------------------------------------- -->
+  <h1 id="pageTitle">EduReview360 Admin</h1>
+  <div class="item d-flex container-fluid">
+    <!-- -------------------------Ring Area------------------------- -->
+    <div class="item-info d-flex">
+      <app-data-ring [ringsData]="ringsData"></app-data-ring>
+    </div>
+    <!-- -------------------------End of Ring Area------------------------- -->
+
+    <!-- -------------------------Info Image------------------------- -->
+    <div class="item-img">
+      <img src="../../assets/img/Admin.jpg" alt="admin-image" />
+    </div>
+    <!-- -------------------------End of Info Image------------------------- -->
+  </div>
+  <!-- --------------------------------------------------End of Hero Section-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Course List-------------------------------------------------- -->
+  <h2 id="courses-list">Courses</h2>
+  <div class="scroll-container table-container container-fluid">
+    <!-- -------------------------Course Table------------------------- -->
+    <table
+      datatable
+      [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"
+      class="scroll-table course-table table-responsive"
+      id="courseTable"
+    >
+      <!-- -------------------------Table Head------------------------- -->
+      <thead>
+        <tr>
+          <td>SNo.</td>
+          <td>Title</td>
+          <td>Rating</td>
+          <td>Instructor</td>
+          <td>Participants</td>
+          <td>Progress</td>
+          <td>Details</td>
+        </tr>
+      </thead>
+      <!-- -------------------------Table Body------------------------- -->
+      <tbody>
+        <tr *ngFor="let course of courseList">
+          <td>{{ course.id }}</td>
+          <td>{{ course.courseName }}</td>
+          <td>
+            <span *ngFor="let star of getStarsArray(course.rating)">
+              <i class="fa-solid fa-star"></i>
+            </span>
+          </td>
+          <td>{{ course.instructorName }}</td>
+          <td>{{ course.participantCount }}</td>
+          <td>
+            <app-progress-bar
+              [progressValue]="course.progress"
+            ></app-progress-bar>
+          </td>
+          <td>
+            <a
+              [routerLink]="['course', course.id, course.courseName]"
+              fragment="pageTitle"
+              >View Details</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- -------------------------End of Course Table------------------------- -->
+  </div>
+  <!-- --------------------------------------------------End of Course List-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Instructor List-------------------------------------------------- -->
+  <h2 id="instructors-list">Instructor</h2>
+  <div class="scroll-container table-container container-fluid">
+    <!-- -------------------------Instructor Table------------------------- -->
+    <table
+      datatable
+      [dtOptions]="dtOptions"
+      class="scroll-table instructor-table table-responsive"
+      id="instructorTable"
+    >
+      <!-- -------------------------Table Head------------------------- -->
+      <thead>
+        <tr>
+          <td>SNo.</td>
+          <td>Name</td>
+          <td>Rating</td>
+          <td>Ongoing Courses</td>
+          <td>Upcoming Courses</td>
+          <td>Details</td>
+        </tr>
+      </thead>
+      <!-- -------------------------Table Body------------------------- -->
+      <tbody>
+        <tr *ngFor="let instructor of instructorList">
+          <td>{{ instructor.id }}</td>
+          <td>{{ instructor.instructorName }}</td>
+          <td>
+            <span *ngFor="let star of getStarsArray(instructor.rating)"
+              ><i class="fa-solid fa-star"></i
+            ></span>
+          </td>
+          <td>{{ instructor.ongoingCourses }}</td>
+          <td>{{ instructor.upcomingCourses }}</td>
+          <td>
+            <a
+              [routerLink]="[
+                'instructor',
+                instructor.id,
+                instructor.instructorName
+              ]"
+              fragment="pageTitle"
+              >View Details</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- -------------------------End of Instructor Table------------------------- -->
+  </div>
+  <!-- --------------------------------------------------End of Instructor List-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Participant List-------------------------------------------------- -->
+  <h2 id="participants-list">Participants</h2>
+  <div class="scroll-container table-container container-fluid">
+    <!-- -------------------------Participant Table------------------------- -->
+    <table
+      datatable
+      [dtOptions]="dtOptionsParticipant"
+      class="scroll-table participant-table table-responsive"
+      id="participantTable"
+    >
+      <!-- -------------------------Table Head------------------------- -->
+      <thead>
+        <tr>
+          <td>SNo.</td>
+          <td>Name</td>
+          <td>Enrolled Courses</td>
+          <td>Applied Courses</td>
+          <td>Feedback Submitted</td>
+          <td>Details</td>
+        </tr>
+      </thead>
+      <!-- -------------------------Table Body------------------------- -->
+      <tbody>
+        <tr *ngFor="let participant of participantList">
+          <td>{{ participant.id }}</td>
+          <td>{{ participant.participantName }}</td>
+          <td>{{ participant.enrolledCourses }}</td>
+          <td>{{ participant.appliedCourses }}</td>
+          <td>{{ participant.feedbackSubmitted }}</td>
+          <td>
+            <a
+              [routerLink]="[
+                'participant',
+                participant.id,
+                participant.participantName
+              ]"
+              fragment="pageTitle"
+              >View Details</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- -------------------------End of Participant Table------------------------- -->
+  </div>
+  <!-- --------------------------------------------------End of Participant List-------------------------------------------------- -->
+</main>
+<!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->

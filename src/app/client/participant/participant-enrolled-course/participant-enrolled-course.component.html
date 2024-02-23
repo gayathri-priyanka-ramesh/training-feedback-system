@@ -1,0 +1,98 @@
+<!-- --------------------------------------------------Main Area-------------------------------------------------- -->
+<main class="container-fluid">
+  <!-- --------------------------------------------------Hero Section-------------------------------------------------- -->
+  <h1 id="pageTitle">{{ requiredCourse.courseName }}</h1>
+  <div class="item d-flex container-fluid">
+    <!-- -------------------------Info Area------------------------- -->
+    <div class="item-info d-flex">
+      <!-- -------------------------Data Area------------------------- -->
+      <div class="course-info">
+        <p class="card-text">
+          <b>Instructor:</b> {{ requiredCourse.instructorName }}
+        </p>
+        <app-progress-bar
+          [progressValue]="requiredCourse.progress"
+        ></app-progress-bar>
+      </div>
+      <!-- -------------------------End of Data Area------------------------- -->
+
+      <!-- -------------------------Ring Area------------------------- -->
+      <div class="data-info d-flex">
+        <app-data-ring [ringsData]="ringsData"></app-data-ring>
+      </div>
+      <!-- -------------------------End of Ring Area------------------------- -->
+    </div>
+    <!-- -------------------------End of Info Area------------------------- -->
+
+    <!-- -------------------------Info Image------------------------- -->
+    <div class="item-img">
+      <img
+        src="{{ requiredCourse.imgSrc }}"
+        alt="{{ requiredCourse.courseName }}"
+        class="img-fluid"
+      />
+    </div>
+    <!-- -------------------------End of Info Image------------------------- -->
+  </div>
+
+  <!-- -------------------------Continue Learning------------------------- -->
+  <div class="button-group d-flex">
+    <div class="button">
+      <a
+        [routerLink]="[
+          requiredCourse.route + '/viewCourse',
+          requiredCourse.id,
+          requiredCourse.courseName
+        ]"
+        class="btn nav-item"
+        >Continue Learning</a
+      >
+    </div>
+  </div>
+  <!-- -------------------------End of Continue Learning------------------------- -->
+  <!-- --------------------------------------------------End of Hero Section-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Feedback Section-------------------------------------------------- -->
+  <h2 id="feedback">Feedback</h2>
+  <div class="container-fluid" *ngFor="let module of moduleNumber">
+    <p class="module-feedback">
+      {{ module }}
+      <a
+        [routerLink]="[
+          requiredCourse.route + '/feedbackSubmit',
+          requiredCourse.id,
+          requiredCourse.courseName,
+          module
+        ]"
+        fragment="pageTitle"
+        >Feedback Form</a
+      >
+    </p>
+  </div>
+  <!-- --------------------------------------------------End of Feedback Section-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Feedback Responses-------------------------------------------------- -->
+  <h3 id="feedback-responses">Previous Responses</h3>
+  <app-feedback-response-table
+    [responseDataParticipantView]="responseDataParticipantView"
+  ></app-feedback-response-table>
+  <!-- --------------------------------------------------End of Feedback Responses-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Feedback Report-------------------------------------------------- -->
+  <div class="button-group d-flex">
+    <div class="button">
+      <a
+        [routerLink]="[
+          requiredCourse.route + '/report',
+          requiredCourse.id,
+          requiredCourse.courseName
+        ]"
+        fragment="pageTitle"
+        class="btn nav-item"
+        >Generate Report</a
+      >
+    </div>
+  </div>
+  <!-- --------------------------------------------------End of Feedback Report-------------------------------------------------- -->
+</main>
+<!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->

@@ -1,0 +1,204 @@
+<!-- --------------------------------------------------Feedback Question Form-------------------------------------------------- -->
+<div class="form">
+  <form
+    [formGroup]="feedbackForm"
+    (ngSubmit)="onSubmit()"
+    id="feedbackForm"
+    class="feedback-form"
+  >
+    <!-- --------------------------------------------------Anonnymous Option-------------------------------------------------- -->
+    <div class="checkbox-switch form-check form-switch mb-0" *ngIf="anonymous">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="anonymous"
+        formControlName="anonymous"
+      />
+      <label class="form-check-label" for="anonymous">Set as Anonymous</label>
+    </div>
+    <!-- --------------------------------------------------End of Anonnymous Option-------------------------------------------------- -->
+
+    <!-- --------------------------------------------------Training Evaluation-------------------------------------------------- -->
+    <fieldset>
+      <legend class="float-none w-auto p-2 mx-1">Training Evaluation</legend>
+      <div *ngFor="let question of trainingQuestionsList; let i = index">
+        <label [for]="trainingQuestionIds[i]" class="text-label form-label">
+          {{ question }}
+        </label>
+        <div class="options d-flex">
+          <ng-container
+            *ngFor="
+              let option of [
+                'Poor',
+                'Below Average',
+                'Average',
+                'Above Average',
+                'Excellent'
+              ];
+              let j = index
+            "
+          >
+            <input
+              type="radio"
+              [name]="trainingQuestionIds[i]"
+              [id]="trainingQuestionIds[i] + '-' + (j + 1)"
+              [value]="option"
+              [formControlName]="trainingQuestionIds[i]"
+            />
+            <label
+              [for]="trainingQuestionIds[i] + '-' + (j + 1)"
+              [attr.data]="j + 1"
+            ></label>
+          </ng-container>
+          <div class="option-position"></div>
+        </div>
+      </div>
+    </fieldset>
+    <!-- --------------------------------------------------End of Training Evaluation-------------------------------------------------- -->
+
+    <!-- --------------------------------------------------Instructor Evaluation-------------------------------------------------- -->
+    <fieldset>
+      <legend class="float-none w-auto p-2 mx-1">Instructor Evaluation</legend>
+      <div *ngFor="let question of instructorQuestionsList; let i = index">
+        <label [for]="instructorQuestionIds[i]" class="text-label form-label">
+          {{ question }}
+        </label>
+        <div class="options d-flex">
+          <ng-container
+            *ngFor="
+              let option of [
+                'Poor',
+                'Below Average',
+                'Average',
+                'Above Average',
+                'Excellent'
+              ];
+              let j = index
+            "
+          >
+            <input
+              type="radio"
+              [name]="instructorQuestionIds[i]"
+              [id]="instructorQuestionIds[i] + '-' + (j + 1)"
+              [value]="option"
+              [formControlName]="instructorQuestionIds[i]"
+            />
+            <label
+              [for]="instructorQuestionIds[i] + '-' + (j + 1)"
+              [attr.data]="j + 1"
+            ></label>
+          </ng-container>
+          <div class="option-position"></div>
+        </div>
+      </div>
+    </fieldset>
+    <!-- --------------------------------------------------End of Instructor Evaluation-------------------------------------------------- -->
+
+    <!-- --------------------------------------------------Addmitional Comments-------------------------------------------------- -->
+    <fieldset *ngIf="additionalComment">
+      <legend class="float-none w-auto p-2 mx-1">Additional Comment</legend>
+      <label for="comments" class="text-label form-label">
+        Please share any additional comments or suggestions about the training
+        program or instructor. Your feedback is valuable in helping us improve.
+      </label>
+      <textarea
+        formControlName="comments"
+        name="comments"
+        id="comments"
+        rows="3"
+      ></textarea>
+    </fieldset>
+    <!-- --------------------------------------------------End of Addmitional Comments-------------------------------------------------- -->
+
+    <!-- --------------------------------------------------Feedback Form Buttons (Participant)-------------------------------------------------- -->
+    <div class="button-group d-flex" *ngIf="!formPreview">
+      <!-- -------------------------Reset------------------------- -->
+      <div class="button">
+        <button type="reset" class="btn nav-item">Reset</button>
+      </div>
+      <!-- -------------------------Submit------------------------- -->
+      <div class="button">
+        <button
+          type="submit"
+          class="btn nav-item"
+          id="feedbackSubmit"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+    <!-- --------------------------------------------------End of Feedback Form Buttons (Participant)-------------------------------------------------- -->
+
+    <!-- --------------------------------------------------Feedback Form Buttons (Admin)-------------------------------------------------- -->
+    <div class="button-group d-flex" *ngIf="formPreview">
+      <!-- -------------------------Edit------------------------- -->
+      <div class="button">
+        <button type="submit" class="btn nav-item">
+          <a [routerLink]="editRoute" fragment="pageTitle">Edit</a>
+        </button>
+      </div>
+
+      <!-- -------------------------Save as Draft------------------------- -->
+      <div class="button" *ngIf="!buttonRemove">
+        <button
+          type="button"
+          class="btn nav-item"
+          id="questionSaveDraft"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+          (click)="saveDraft()"
+        >
+          Save as Draft
+        </button>
+      </div>
+
+      <!-- -------------------------Upload------------------------- -->
+      <div class="button" *ngIf="!buttonRemove">
+        <button
+          type="button"
+          class="btn nav-item"
+          id="questionUpload"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+          (click)="uploadForm()"
+        >
+          Upload
+        </button>
+      </div>
+
+      <!-- -------------------------View Course------------------------- -->
+      <div class="button" *ngIf="buttonRemove">
+        <button
+          type="button"
+          class="btn nav-item"
+          id="questionSaveDraft"
+          [routerLink]="route"
+          fragment="pageTitle"
+        >
+          View Course
+        </button>
+      </div>
+    </div>
+    <!-- --------------------------------------------------End of Feedback Form Buttons (Admin)-------------------------------------------------- -->
+  </form>
+  <!-- --------------------------------------------------End of Form Area-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Feedback Form Modal-------------------------------------------------- -->
+  <app-modal
+    [modalMessage]="modalMessage"
+    [modalConfirmMessage]="modalConfirmMessage"
+    [modalButtonMessage]="modalButtonMessage"
+    [route]="successRoute"
+    [fragment]="fragment"
+    [confirmModalMessage]="confirmModalMessage"
+    [confirmModalConfirmMessage]="confirmModalConfirmMessage"
+    [confirmModalButtonMessage]="confirmModalButtonMessage"
+    [confirmRoute]="confirmRoute"
+    [confirmFragment]="fragment"
+    (confirmButtonClick)="removeButton()"
+  ></app-modal>
+  <!-- --------------------------------------------------End of Feedback Form Modal-------------------------------------------------- -->
+</div>
+<!-- --------------------------------------------------End of Feedback Form-------------------------------------------------- -->

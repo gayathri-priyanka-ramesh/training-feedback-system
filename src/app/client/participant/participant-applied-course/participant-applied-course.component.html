@@ -1,0 +1,58 @@
+<!-- --------------------------------------------------Main Area-------------------------------------------------- -->
+<main>
+  <!-- --------------------------------------------------Hero Section-------------------------------------------------- -->
+  <h1 id="pageTitle">{{ requiredCourse.courseName }}</h1>
+  <div class="item d-flex container-fluid">
+    <!-- -------------------------Info Area------------------------- -->
+    <div class="item-info d-flex">
+      <!-- -------------------------Data Area------------------------- -->
+      <div class="course-info">
+        <p class="card-text">
+          <b>Instructor:</b> {{ requiredCourse.instructorName }}
+        </p>
+        <p class="card-text">
+          <b>Start Date:</b> {{ requiredCourse.startDate }}
+        </p>
+        <p class="rating card-text">
+          <span *ngFor="let star of starArray"
+            ><i class="fa-solid fa-star"></i
+          ></span>
+        </p>
+      </div>
+      <!-- -------------------------End of Data Area------------------------- -->
+
+      <!-- -------------------------Ring Area------------------------- -->
+      <div class="data-info d-flex">
+        <app-data-ring [ringsData]="ringsData"></app-data-ring>
+      </div>
+      <!-- -------------------------End of Ring Area------------------------- -->
+    </div>
+    <!-- -------------------------End of Info Area------------------------- -->
+    
+    <!-- -------------------------Info Image------------------------- -->
+    <div class="item-img">
+      <img
+        src="{{ requiredCourse.imgSrc }}"
+        alt="{{ requiredCourse.courseName }}"
+        class="img-fluid"
+      />
+    </div>
+    <!-- -------------------------End Info Image------------------------- -->
+  </div>
+  <div class="notify">
+    <p>We will notify you once the course is approved!</p>
+  </div>
+  <!-- --------------------------------------------------End of Hero Section-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Trending Course Area-------------------------------------------------- -->
+  <h2>Explore Other Trending Courses</h2>
+  <!-- -------------------------Cards------------------------- -->
+  <div class="courses row">
+    <div class="col" *ngFor="let course of trendingCourses">
+      <app-course-card [courseData]="course"></app-course-card>
+    </div>
+  </div>
+  <!-- -------------------------End of Cards------------------------- -->
+  <!-- --------------------------------------------------End of Trending Course Area-------------------------------------------------- -->
+</main>
+<!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->

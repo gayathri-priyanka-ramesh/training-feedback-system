@@ -1,0 +1,97 @@
+<!-- --------------------------------------------------Header-------------------------------------------------- -->
+<header class="container-fluid d-flex justify-content-between">
+  <!-- -------------------------Brand------------------------- -->
+  <div class="brand d-flex">
+    <div class="logo">
+      <a routerLink="/instructor"
+        ><img src="../../assets/img/logo.png" alt="logo" class="img-fluid"
+      /></a>
+    </div>
+    <div class="brand-name">
+      <p>EduReview360</p>
+    </div>
+  </div>
+  <!-- -------------------------End of Brand------------------------- -->
+
+  <!-- -------------------------Profile------------------------- -->
+  <div class="headprofile d-flex">
+    <div class="dropdown">
+      <button
+        class="btn dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img
+          src="../../assets/img/instructor.jpg"
+          alt="instructor-profile"
+          class="img-fluid"
+        />
+      </button>
+      <ul
+        class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="dropdownMenuButton"
+      >
+        <li class="dropdown-item">{{ email }}</li>
+        <li><hr class="dropdown-divider" /></li>
+        <li class="dropdown-item">
+          <a type="button" data-bs-toggle="modal" data-bs-target="#logoutModal"
+            ><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- -------------------------End of Profile------------------------- -->
+</header>
+<!-- --------------------------------------------------End of Header-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Logout Modal-------------------------------------------------- -->
+<div
+  class="modal fade"
+  id="logoutModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Are you sure to Logout?</p>
+        <div class="button-group d-flex">
+          <div class="button">
+            <button
+              class="btn nav-item logout"
+              type="button"
+              data-bs-dismiss="modal"
+              (click)="logout()"
+            >
+              Yes, Logout!
+            </button>
+          </div>
+          <div class="button">
+            <button
+              class="btn nav-item cancel"
+              type="button"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- --------------------------------------------------End of Logout Modal-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Breadcrumbs-------------------------------------------------- -->
+<app-breadcrumb></app-breadcrumb>
+<!-- --------------------------------------------------End of Breadcrumbs-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Router Outlet-------------------------------------------------- -->
+<router-outlet></router-outlet>
+<!-- --------------------------------------------------End of Router Outlet-------------------------------------------------- -->

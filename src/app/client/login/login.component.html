@@ -1,0 +1,37 @@
+<!-- --------------------------------------------------Main Area-------------------------------------------------- -->
+<main class="home container-fluid d-flex">
+  <!-- --------------------------------------------------Brand Area-------------------------------------------------- -->
+  <div class="title row">
+    <div class="logo mx-auto">
+      <img src="../../assets/img/logo.png" alt="logo" class="img-fluid" />
+    </div>
+    <p>
+      Welcome to EduReview360, your gateway to data-driven education excellence.
+      Sign in to access powerful insights and drive continuous improvement in
+      your training programs.
+    </p>
+  </div>
+  <!-- --------------------------------------------------End of Brand Area-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Form Area-------------------------------------------------- -->
+  <div class="enter row">
+    <h2 class="enter-title">Login</h2>
+    <div class="form col-lg-11 mx-auto">
+      <app-login-form [userLogin]="userLogin"></app-login-form>
+    </div>
+
+    <!-- -------------------------Testing Credentials------------------------- -->
+    <a
+      type="button"
+      class="login-credentials mt-0"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+      >Click to View Login Credentials</a
+    >
+    <!-- -------------------------Modal------------------------- -->
+    <app-modal [modalMessage]="modalMessage" [noButton]="noButton"></app-modal>
+    <!-- -------------------------End of Testing Credentials------------------------- -->
+  </div>
+  <!-- --------------------------------------------------End Form Area-------------------------------------------------- -->
+</main>
+<!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->

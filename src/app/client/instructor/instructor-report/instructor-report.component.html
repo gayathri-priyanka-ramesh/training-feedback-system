@@ -1,0 +1,26 @@
+<!-- --------------------------------------------------Main Area-------------------------------------------------- -->
+<main class="report container-fluid">
+  <h1 id="pageTitle">{{ requiredCourse.courseName }}</h1>
+
+  <!-- --------------------------------------------------Report Area-------------------------------------------------- -->
+  <app-report></app-report>
+  <!-- --------------------------------------------------End of Report Area-------------------------------------------------- -->
+
+  <!-- -------------------------View Course Button------------------------- -->
+  <div class="button-group d-flex">
+    <div class="button">
+      <a
+        [routerLink]="[
+          '/instructor/ongoingCourse',
+          requiredCourse.id,
+          requiredCourse.courseName
+        ]"
+        fragment="pageTitle"
+        class="btn nav-item"
+        >View Course</a
+      >
+    </div>
+  </div>
+  <!-- -------------------------End of View Course Button------------------------- -->
+</main>
+<!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->

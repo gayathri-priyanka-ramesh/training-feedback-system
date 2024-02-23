@@ -1,0 +1,11 @@
+{
+  "hosting": [
+    {
+      "target": "training-feedback-system",
+      "source": ".",
+      "frameworksBackend": {
+        "region": "us-central1"
+      }
+    }
+  ]
+}

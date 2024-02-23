@@ -1,0 +1,43 @@
+<!-- --------------------------------------------------Main Area-------------------------------------------------- -->
+<main>
+  <!-- --------------------------------------------------Hero Section-------------------------------------------------- -->
+  <h1 id="pageTitle">{{ userName }}</h1>
+  <div class="item d-flex container-fluid">
+    <!-- -------------------------Ring Area------------------------- -->
+    <div class="item-info d-flex">
+      <app-data-ring [ringsData]="ringsData"></app-data-ring>
+    </div>
+    <!-- -------------------------End of Ring Area------------------------- -->
+    <div class="item-img">
+      <img
+        src="../../assets/img/instructor.jpg"
+        alt="instructor-image"
+        class="img-fluid"
+      />
+    </div>
+  </div>
+  <!-- --------------------------------------------------End of Hero Section-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Ongoing Course Area-------------------------------------------------- -->
+  <h2 id="ongoing-courses">Ongoing Courses:</h2>
+  <!-- -------------------------Cards------------------------- -->
+  <div class="courses row">
+    <div class="col" *ngFor="let course of ongoingCourses">
+      <app-course-card [courseData]="course"></app-course-card>
+    </div>
+  </div>
+  <!-- -------------------------End of Cards------------------------- -->
+  <!-- --------------------------------------------------End of Ongoing Course Area-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Upcoming Course Area-------------------------------------------------- -->
+  <h2 id="upcoming-courses">Upcoming Courses:</h2>
+  <!-- -------------------------Cards------------------------- -->
+  <div class="courses row">
+    <div class="col" *ngFor="let course of upcomingCourses">
+      <app-course-card [courseData]="course"></app-course-card>
+    </div>
+  </div>
+  <!-- -------------------------End of Cards------------------------- -->
+  <!-- --------------------------------------------------End of Upcoming Course Area-------------------------------------------------- -->
+</main>
+<!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->

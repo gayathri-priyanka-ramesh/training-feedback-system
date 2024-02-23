@@ -1,0 +1,187 @@
+<!-- --------------------------------------------------Applicant Details-------------------------------------------------- -->
+<h2 id="course-applications">Applicants</h2>
+<div class="scroll-container table-container container-fluid">
+  <!-- --------------------------------------------------Applicant Table-------------------------------------------------- -->
+  <table
+    datatable
+    [dtOptions]="dtOptions"
+    [dtTrigger]="dtTrigger"
+    class="scroll-table applicant-table table-responsive"
+    id="courseApplicantTable"
+  >
+    <!-- -------------------------Table Head------------------------- -->
+    <thead>
+      <tr>
+        <td scope="col">SNo.</td>
+        <td scope="col">Name</td>
+        <td scope="col">Date</td>
+        <td scope="col">Enrolled Courses</td>
+        <td scope="col">Application Status</td>
+        <td scope="col">Comment</td>
+        <td scope="col">Action</td>
+      </tr>
+    </thead>
+    <!-- -------------------------Table Body------------------------- -->
+    <tbody>
+      <tr *ngFor="let applicant of applicantDataStore; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ applicant.applicantName }}</td>
+        <td>{{ applicant.appliedDate }}</td>
+        <td>{{ applicant.enrolledCourses }}</td>
+        <td>{{ applicant.status }}</td>
+        <td>{{ applicant.comment }}</td>
+        <td>
+          <a
+            (click)="editApprovalStatus(applicant)"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            <i class="fa-solid fa-pen-to-square"></i
+          ></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- --------------------------------------------------End of Applicant Table-------------------------------------------------- -->
+</div>
+<!-- --------------------------------------------------End of Applicant Details-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Applicant Modal-------------------------------------------------- -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <!-- -------------------------Modal Header------------------------- -->
+        <div class="d-flex justify-content-end mb-3">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            id="close"
+            (click)="applicantForm.reset()"
+          ></button>
+        </div>
+        <!-- -------------------------End of Modal Header------------------------- -->
+
+        <!-- -------------------------Modal Body------------------------- -->
+        <div class="application-form form">
+          <!-- -------------------------Approval Form Area------------------------- -->
+          <form [formGroup]="applicantForm" class="feedback-form">
+            <fieldset>
+              <legend class="float-none w-auto p-2 mx-1">
+                Course Approval
+              </legend>
+              <!-- -------------------------Application Status------------------------- -->
+              <div class="mb-3">
+                <label for="status" class="text-label form-label"
+                  >Choose the Application status
+                  <span class="mandate">*</span></label
+                >
+                <!-- -------------------------Approval Choice (Approve)------------------------- -->
+                <div class="form-check mb-0">
+                  <input
+                    class="checkbox-input"
+                    type="radio"
+                    name="status"
+                    id="approved"
+                    value="Approved"
+                    formControlName="status"
+                  />
+                  <label
+                    class="checkbox-label form-check-label mb-0"
+                    for="approved"
+                    >Approve</label
+                  >
+                </div>
+                <!-- -------------------------Approval Choice (Disapprove)------------------------- -->
+                <div class="form-check mb-0">
+                  <input
+                    class="checkbox-input"
+                    type="radio"
+                    name="status"
+                    id="disapproved"
+                    value="Disapproved"
+                    formControlName="status"
+                  />
+                  <label
+                    class="checkbox-label form-check-label mb-0"
+                    for="disapproved"
+                    >Disapprove</label
+                  >
+                </div>
+                <!-- -------------------------Approval Warning------------------------- -->
+                <div
+                  id="approvalWarning"
+                  class="validation"
+                  *ngIf="statusValidation"
+                >
+                  Choose to either Approve or Disapprove
+                </div>
+              </div>
+              <!-- -------------------------End of Approval Status------------------------- -->
+
+              <!-- -------------------------Approval Reason------------------------- -->
+              <div class="mb-3">
+                <label
+                  for="comment"
+                  class="text-label text-label-after-checkbox form-label"
+                  >Comment <span class="mandate">*</span></label
+                >
+                <input
+                  type="text"
+                  formControlName="comment"
+                  class="form-control mb-0"
+                  id="comment"
+                  [ngClass]="{
+                    'is-invalid':
+                      commentValidation ||
+                      (formFields.comment.touched &&
+                        formFields.comment.errors?.required)
+                  }"
+                />
+                <!-- -------------------------Approval Reason Warning------------------------- -->
+                <div
+                  id="commentWarning"
+                  class="validation mb-1"
+                  *ngIf="
+                    commentValidation ||
+                    (formFields.comment.touched &&
+                      formFields.comment.errors?.required)
+                  "
+                >
+                  Enter reason for your approval/disapproval
+                </div>
+              </div>
+              <!-- -------------------------Approval Choice (Approve)------------------------- -->
+            </fieldset>
+
+            <!-- -------------------------Form Submit------------------------- -->
+            <div class="button-group d-flex">
+              <div class="button">
+                <button
+                  type="submit"
+                  class="btn nav-item"
+                  (click)="updateApprovalStatus()"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+            <!-- -------------------------End of Form Submit------------------------- -->
+          </form>
+          <!-- -------------------------End of Approval Form Area------------------------- -->
+        </div>
+        <!-- -------------------------End of Modal Body------------------------- -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- --------------------------------------------------End of Applicant Modal-------------------------------------------------- -->

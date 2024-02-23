@@ -1,0 +1,161 @@
+<!-- --------------------------------------------------Main Area-------------------------------------------------- -->
+<main>
+  <h1 id="pageTitle">{{ requiredCourse.courseName }}</h1>
+  <div class="course-application d-flex">
+    <!-- --------------------------------------------------Hero Section-------------------------------------------------- -->
+    <div class="course-area application-course-area">
+      <div class="item d-flex container-fluid">
+        <!-- -------------------------Info Area------------------------- -->
+        <div class="item-info d-flex">
+          <!-- -------------------------Data Area------------------------- -->
+          <div class="course-info">
+            <p><b>Instructor:</b> {{ requiredCourse.instructorName }}</p>
+            <p><b>Course Status:</b> {{ requiredCourse.status }}</p>
+            <p>
+              <b>Participant Applied:</b>
+              {{ requiredApplicant.participantName }}
+            </p>
+            <p>
+              <b>Enrolled Courses:</b> {{ requiredApplicant.enrolledCourses }}
+            </p>
+            <p><b>Date Applied:</b> {{ requiredApplicant.appliedDate }}</p>
+          </div>
+          <!-- -------------------------End of Data Area------------------------- -->
+        </div>
+        <!-- -------------------------End of Info Area------------------------- -->
+
+        <!-- -------------------------Info Image------------------------- -->
+        <div class="course-content">
+          <img
+            src="{{ requiredCourse.imgSrc }}"
+            alt="{{ requiredCourse.courseName }}"
+            class="img-fluid"
+          />
+        </div>
+        <!-- -------------------------End of Info Image------------------------- -->
+      </div>
+    </div>
+    <!-- --------------------------------------------------End of Hero Section-------------------------------------------------- -->
+
+    <!-- --------------------------------------------------Approval Form-------------------------------------------------- -->
+    <div class="application-form form">
+      <!-- -------------------------Form Area------------------------- -->
+      <form class="feedback-form" [formGroup]="applicantForm">
+        <fieldset>
+          <legend class="float-none w-auto p-2 mx-1">Course Approval</legend>
+          <!-- -------------------------Application Status------------------------- -->
+          <div class="mb-3">
+            <label for="status" class="text-label form-label"
+              >Choose the Application status
+              <span class="mandate">*</span></label
+            >
+            <div class="form-check">
+              <input
+                class="checkbox-input"
+                type="radio"
+                name="status"
+                id="approved"
+                value="Approved"
+                formControlName="status"
+              />
+              <label class="checkbox-label form-check-label" for="approved"
+                >Approve</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="checkbox-input"
+                type="radio"
+                name="status"
+                id="disapproved"
+                value="Disapproved"
+                formControlName="status"
+              />
+              <label class="checkbox-label form-check-label" for="disapproved"
+                >Disapprove</label
+              >
+            </div>
+            <div
+              id="approvalWarning"
+              class="validation"
+              *ngIf="statusValidation"
+            >
+              Choose to either Approve or Disapprove
+            </div>
+          </div>
+          <!-- -------------------------End of Application Status------------------------- -->
+
+          <!-- -------------------------Comment Field------------------------- -->
+          <div class="mb-3">
+            <label
+              for="comment"
+              class="text-label text-label-after-checkbox form-label"
+              >Comment <span class="mandate">*</span></label
+            >
+            <input
+              type="text"
+              formControlName="comment"
+              class="form-control mb-0"
+              id="comment"
+              [ngClass]="{
+                'is-invalid':
+                  commentValidation ||
+                  (formFields.comment.touched &&
+                    formFields.comment.errors?.required)
+              }"
+            />
+            <div
+              id="commentWarning"
+              class="validation mb-1"
+              *ngIf="
+                commentValidation ||
+                (formFields.comment.touched &&
+                  formFields.comment.errors?.required)
+              "
+            >
+              Give comment on your approval/disapproval of the course
+            </div>
+          </div>
+          <!-- -------------------------End of Comment Field------------------------- -->
+        </fieldset>
+
+        <!-- -------------------------Form Submit------------------------- -->
+        <div class="button-group d-flex">
+          <div class="button">
+            <button type="reset" class="btn nav-item">Reset</button>
+          </div>
+          <div class="button">
+            <button
+              type="button"
+              class="btn nav-item"
+              id="approvalSubmit"
+              (click)="formApproval()"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+        <!-- -------------------------End of Form Submit------------------------- -->
+      </form>
+      <!-- -------------------------End of Form Area------------------------- -->
+    </div>
+  </div>
+  <!-- -------------------------Form Submission------------------------- -->
+  <a
+    type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#staticBackdrop"
+    id="submit-result"
+  ></a>
+
+  <!-- -------------------------Modal------------------------- -->
+  <app-modal
+    [modalMessage]="modalMessage"
+    [modalButtonMessage]="modalButtonMessage"
+    [route]="route"
+    [fragment]="fragment"
+  ></app-modal>
+  <!-- -------------------------End of Form Submission------------------------- -->
+  <!-- --------------------------------------------------End of Approval Form-------------------------------------------------- -->
+</main>
+<!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->

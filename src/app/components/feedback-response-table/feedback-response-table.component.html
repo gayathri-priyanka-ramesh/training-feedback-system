@@ -1,0 +1,115 @@
+<!-- --------------------------------------------------Feedback Response Details-------------------------------------------------- -->
+<div class="scroll-container container-fluid">
+  <!-- -------------------------Feedback Response Table------------------------- -->
+  <table class="scroll-table feedback-table table-responsive">
+    <!-- -------------------------Table Head------------------------- -->
+    <thead>
+      <tr>
+        <td style="grid-row: 1/3" *ngIf="responseDataParticipantView">
+          Module
+        </td>
+        <td style="grid-row: 1/3" *ngIf="!responseDataParticipantView">Name</td>
+        <td style="grid-row: 1/3">Date</td>
+        <td style="grid-column: 3/7">Course Rating</td>
+        <td style="grid-column: 7/11">Training Rating</td>
+        <td style="grid-row: 1/3; grid-column: 11/12">Comments</td>
+        <td style="grid-row: 1/3; grid-column: 12/13">Instructor Response</td>
+        <td style="grid-column: 3/4">Content</td>
+        <td>Resources</td>
+        <td>Organization</td>
+        <td>Facilities</td>
+        <td style="grid-column: 7/8">Knowledge</td>
+        <td>Explanation</td>
+        <td>Discussions</td>
+        <td>Environment</td>
+      </tr>
+    </thead>
+
+    <!-- -------------------------Table Body------------------------- -->
+    <tbody>
+      <tr *ngFor="let response of feedbackResponseDataStore; let i = index">
+        <td *ngIf="responseDataParticipantView" class="text-center">
+          {{ response.module }}
+        </td>
+        <td *ngIf="!responseDataParticipantView">{{ response.name }}</td>
+        <td>{{ response.date }}</td>
+        <td>{{ response.content }}</td>
+        <td>{{ response.resources }}</td>
+        <td>{{ response.organization }}</td>
+        <td>{{ response.facilities }}</td>
+        <td>{{ response.knowledge }}</td>
+        <td>{{ response.explanation }}</td>
+        <td>{{ response.discussion }}</td>
+        <td>{{ response.environment }}</td>
+        <td>{{ response.comments }}</td>
+        <!-- -------------------------Instructor Response Cell (Before Save)------------------------- -->
+        <td
+          id="response-cell-{{ i }}"
+          *ngIf="responseDataInstructorView && !responsesSaved"
+        >
+          <textarea
+            id="response-{{ i }}"
+            name="response"
+            class="response-text"
+            cols="30"
+            rows="3"
+            placeholder="Give your response here..."
+          ></textarea>
+        </td>
+        <!-- -------------------------Instructor Response Cell (After Save)------------------------- -->
+        <td
+          *ngIf="
+            responseDataAdminView ||
+            (responseDataInstructorView && responsesSaved) ||
+            responseDataParticipantView
+          "
+        >
+          {{ response.response }}
+        </td>
+        <!-- <td *ngIf="responseDataAdminView">{{ response.instructorResponse }}</td> -->
+      </tr>
+    </tbody>
+  </table>
+  <!-- -------------------------End of Feedback Response Table------------------------- -->
+</div>
+
+<!-- -------------------------Save Responses------------------------- -->
+<div class="button-group d-flex" *ngIf="responseDataInstructorView">
+  <div class="button">
+    <a
+      class="save-response"
+      id="save"
+      type="button"
+      class="btn nav-item"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+      *ngIf="!responsesSaved"
+      >Save Responses</a
+    >
+    <!-- -------------------------View Report------------------------- -->
+    <a
+      type="button"
+      class="btn nav-item"
+      *ngIf="responsesSaved"
+      [routerLink]="confirmRoute"
+      fragment="pageTitle"
+      >View Report</a
+    >
+  </div>
+</div>
+<!-- -------------------------End of Save Responses------------------------- -->
+<!-- --------------------------------------------------End of Feedback Response Details-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Feedback Response Modal-------------------------------------------------- -->
+<app-modal
+  [modalMessage]="modalMessage"
+  [modalConfirmMessage]="modalConfirmMessage"
+  [modalButtonMessage]="modalButtonMessage"
+  [confirmModalMessage]="confirmModalMessage"
+  [confirmModalConfirmMessage]="confirmModalConfirmMessage"
+  [confirmModalButtonMessage]="confirmModalButtonMessage"
+  [confirmRoute]="confirmRoute"
+  [confirmFragment]="confirmFragment"
+  (confirmButtonClick)="editFeedbackResponse()"
+></app-modal>
+<!-- --------------------------------------------------End of Feedback Response Modal-------------------------------------------------- -->

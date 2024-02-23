@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "edureview-439ee": {
+      "hosting": {
+        "training-feedback-system": [
+          "edureview-439ee"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "edureview-439ee"
+  }
+}

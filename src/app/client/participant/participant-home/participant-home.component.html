@@ -1,0 +1,57 @@
+<!-- --------------------------------------------------Main Area-------------------------------------------------- -->
+<main class="container-fluid">
+  <!-- --------------------------------------------------Hero Section-------------------------------------------------- -->
+  <h1 id="pageTitle">{{ userName }}</h1>
+  <div class="item d-flex container-fluid">
+    <!-- -------------------------Ring Area------------------------- -->
+    <div class="item-info d-flex">
+      <app-data-ring [ringsData]="ringsData"></app-data-ring>
+    </div>
+    <!-- -------------------------End of Ring Area------------------------- -->
+
+    <!-- -------------------------Info Image------------------------- -->
+    <div class="item-img">
+      <img
+        src="../../assets/img/participant.jfif"
+        alt="participant-image"
+        class="img-fluid"
+      />
+    </div>
+    <!-- -------------------------End of Info Image------------------------- -->
+  </div>
+  <!-- --------------------------------------------------End of Hero Section-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Enrolled Course Area-------------------------------------------------- -->
+  <h2 id="enrolled-courses">Enrolled Courses</h2>
+  <!-- -------------------------Cards------------------------- -->
+  <div class="courses row">
+    <div class="col" *ngFor="let course of enrolledCourses">
+      <app-course-card [courseData]="course"></app-course-card>
+    </div>
+  </div>
+  <!-- -------------------------End of Cards------------------------- -->
+  <!-- --------------------------------------------------End of Enrolled Course Area-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Applied Course Area-------------------------------------------------- -->
+  <h2 id="applied-courses">Applied Courses</h2>
+  <!-- -------------------------Cards------------------------- -->
+  <div class="courses row">
+    <div class="col" *ngFor="let course of appliedCourses">
+      <app-course-card [courseData]="course"></app-course-card>
+    </div>
+  </div>
+  <!-- -------------------------End of Cards------------------------- -->
+  <!-- --------------------------------------------------End of Applied Course Area-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Trending Course Area-------------------------------------------------- -->
+  <h2 id="trending-courses">Trending Courses</h2>
+  <!-- -------------------------Cards------------------------- -->
+  <div class="courses row">
+    <div class="col" *ngFor="let course of trendingCourses">
+      <app-course-card [courseData]="course"></app-course-card>
+    </div>
+  </div>
+  <!-- -------------------------End of Cards------------------------- -->
+  <!-- --------------------------------------------------End of Treding Course Area-------------------------------------------------- -->
+</main>
+<!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->

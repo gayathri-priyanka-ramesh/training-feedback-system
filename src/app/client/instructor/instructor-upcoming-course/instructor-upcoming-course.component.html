@@ -1,0 +1,36 @@
+<!-- --------------------------------------------------Main Area-------------------------------------------------- -->
+<main class="course-area d-flex">
+  <!-- --------------------------------------------------Hero Section-------------------------------------------------- -->
+  <h1 id="pageTitle">{{ requiredCourse.courseName }}</h1>
+  <div class="item d-flex container-fluid">
+    <!-- -------------------------Info Area------------------------- -->
+    <div class="item-info d-flex">
+      <!-- -------------------------Data Area------------------------- -->
+      <div class="course-info">
+        <p class="card-text">
+          <b>Start Date:</b> {{ requiredCourse.startDate }}
+        </p>
+        <p class="card-text"><b>Status:</b> {{ requiredCourse.status }}</p>
+      </div>
+      <!-- -------------------------End of Data Area------------------------- -->
+
+      <!-- -------------------------Ring Area------------------------- -->
+      <div class="data-info d-flex">
+        <app-data-ring [ringsData]="ringsData"></app-data-ring>
+      </div>
+      <!-- -------------------------End of Ring Area------------------------- -->
+    </div>
+    <!-- -------------------------End of Info Area------------------------- -->
+
+    <!-- -------------------------Info Image------------------------- -->
+    <div class="item-img">
+      <img
+        src="{{ requiredCourse.imgSrc }}"
+        alt="{{ requiredCourse.courseName }}"
+      />
+    </div>
+    <!-- -------------------------End of Info Image------------------------- -->
+  </div>
+  <!-- --------------------------------------------------End of Hero Section-------------------------------------------------- -->
+</main>
+<!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->

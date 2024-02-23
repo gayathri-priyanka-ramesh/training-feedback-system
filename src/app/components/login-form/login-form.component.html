@@ -1,0 +1,106 @@
+<!-- --------------------------------------------------Login Form Area-------------------------------------------------- -->
+<form
+  [formGroup]="loginForm"
+  (ngSubmit)="login()"
+  class="needs-validation"
+  novalidate
+>
+  <!-- --------------------------------------------------Username Field-------------------------------------------------- -->
+  <div class="mb-1">
+    <label for="username" class="form-label"
+      >Username <span class="mandate">*</span></label
+    >
+    <input
+      type="email"
+      name="username"
+      class="form-control"
+      formControlName="username"
+      [ngClass]="{
+        'is-invalid': formFields.username.touched && formFields.username.invalid
+      }"
+    />
+
+    <!-- -------------------------Username Warning (Required)------------------------- -->
+    <div
+      id="usernameWarning"
+      class="validation"
+      *ngIf="
+        formFields.username.touched && formFields.username.errors?.required
+      "
+    >
+      Username is required
+    </div>
+
+    <!-- -------------------------Username Warning (Pattern)------------------------- -->
+    <div
+      id="usernameWarning"
+      class="validation"
+      *ngIf="formFields.username.touched && formFields.username.errors?.pattern"
+    >
+      Username pattern is not matched
+    </div>
+  </div>
+  <!-- --------------------------------------------------End of Username Field-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Password Field-------------------------------------------------- -->
+  <div class="mb-1">
+    <label for="password" class="form-label"
+      >Password <span class="mandate">*</span></label
+    >
+    <input
+      type="password"
+      name="password"
+      class="form-control"
+      formControlName="password"
+      [ngClass]="{
+        'is-invalid':
+          formFields.password.touched && formFields.password.errors?.required
+      }"
+    />
+
+    <!-- -------------------------Password Warning (Required)------------------------- -->
+    <div
+      id="passwordWarning"
+      class="validation"
+      *ngIf="
+        formFields.password.touched && formFields.password.errors?.required
+      "
+    >
+      Password is required
+    </div>
+  </div>
+  <!-- --------------------------------------------------End of Password Field-------------------------------------------------- -->
+
+  <!-- Submit Warning -->
+  <div id="submitWarning" class="validation" *ngIf="submitWarningVisible">
+    Invalid username, password, or user type
+  </div>
+
+  <!-- --------------------------------------------------Submit Button-------------------------------------------------- -->
+  <div class="button-group d-flex">
+    <!-- -------------------------Participant------------------------- -->
+    <div class="button" *ngIf="userLogin">
+      <button type="submit" class="btn nav-item" data-type="participant">
+        Participant
+      </button>
+    </div>
+    <!-- -------------------------Instructor------------------------- -->
+    <div class="button" *ngIf="userLogin">
+      <button type="submit" class="btn nav-item" data-type="instructor">
+        Instructor
+      </button>
+    </div>
+    <!-- -------------------------Admin------------------------- -->
+    <div class="button" *ngIf="!userLogin">
+      <button type="submit" class="btn nav-item" data-type="admin">
+        Login
+      </button>
+    </div>
+  </div>
+  <!-- --------------------------------------------------End of Submit Button-------------------------------------------------- -->
+</form>
+<!-- --------------------------------------------------End Login Form Area-------------------------------------------------- -->
+
+<!-- --------------------------------------------------Forgot Password-------------------------------------------------- -->
+<app-forgot-password></app-forgot-password>
+<!-- --------------------------------------------------End of Forgot Password-------------------------------------------------- -->

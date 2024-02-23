@@ -1,0 +1,110 @@
+<!-- --------------------------------------------------Main Area-------------------------------------------------- -->
+<main>
+  <!-- --------------------------------------------------Hero Section-------------------------------------------------- -->
+  <h1 id="pageTitle">{{ requiredCourse.courseName }}</h1>
+  <div class="item d-flex container-fluid">
+    <!-- -------------------------Info Area------------------------- -->
+    <div class="item-info d-flex">
+      <!-- -------------------------Data Area------------------------- -->
+      <div class="course-info">
+        <p class="rating card-text">
+          Rating:
+          <span *ngFor="let star of starArray"
+            ><i class="fa-solid fa-star"></i
+          ></span>
+        </p>
+        <app-progress-bar
+          [progressValue]="requiredCourse.progress"
+        ></app-progress-bar>
+      </div>
+      <!-- -------------------------End of Data Area------------------------- -->
+
+      <!-- -------------------------Ring Area------------------------- -->
+      <div class="data-info d-flex">
+        <app-data-ring [ringsData]="ringsData"></app-data-ring>
+      </div>
+      <!-- -------------------------End of Ring Area------------------------- -->
+    </div>
+    <!-- -------------------------End of Info Area------------------------- -->
+
+    <!-- -------------------------Info Image------------------------- -->
+    <div class="item-img">
+      <img
+        src="{{ requiredCourse.imgSrc }}"
+        alt="{{ requiredCourse.courseName }}"
+        class="img-fluid"
+      />
+    </div>
+  </div>
+  <!-- -------------------------End of Info Image------------------------- -->
+
+  <!-- -------------------------Continue Teaching------------------------- -->
+  <div class="button-group d-flex">
+    <div class="button">
+      <a
+        [routerLink]="[
+          requiredCourse.route + '/viewCourse',
+          requiredCourse.id,
+          requiredCourse.courseName
+        ]"
+        class="btn nav-item"
+        >Continue Teaching</a
+      >
+    </div>
+  </div>
+  <!-- -------------------------End of Continue Teaching------------------------- -->
+  <!-- --------------------------------------------------End of Hero Section-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Feedback Section-------------------------------------------------- -->
+  <h2 id="feedback">Feedback</h2>
+  <div class="container-fluid" *ngFor="let module of moduleNumber">
+    <p class="module-feedback">
+      {{ module }}
+      <a
+        [routerLink]="[
+          requiredCourse.route + '/feedbackView',
+          requiredCourse.id,
+          requiredCourse.courseName,
+          module
+        ]"
+        fragment="pageTitle"
+        >Feedback Responses</a
+      >
+    </p>
+  </div>
+  <!-- --------------------------------------------------End of Feedback Section-------------------------------------------------- -->
+
+  <!-- --------------------------------------------------Participant Attendace-------------------------------------------------- -->
+  <h2 id="participant-attendance">Participant Attendance</h2>
+  <div class="scroll-container table-container container-fluid">
+    <!-- -------------------------Attendance Table------------------------- -->
+    <table
+      datatable
+      [dtOptions]="dtOptions"
+      class="scroll-table attendance-table table-responsive"
+      id="attendanceTable"
+    >
+      <!-- -------------------------Table Head------------------------- -->
+      <thead>
+        <tr>
+          <td>SNo.</td>
+          <td>Name</td>
+          <td>Attendance %</td>
+          <td>Modules Completed</td>
+        </tr>
+      </thead>
+      <!-- -------------------------Table Body------------------------- -->
+      <tbody>
+        <tr *ngFor="let participant of attendanceData">
+          <td>{{ participant.participantId }}</td>
+          <td>{{ participant.name }}</td>
+          <td>{{ participant.attendancePercentage }}</td>
+          <td>{{ participant.modulesCompleted }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- -------------------------End of Attendance Table------------------------- -->
+  </div>
+  <!-- --------------------------------------------------End of Participant Attendance-------------------------------------------------- -->
+</main>
+<!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->
