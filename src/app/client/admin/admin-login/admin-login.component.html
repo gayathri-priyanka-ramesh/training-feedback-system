@@ -22,11 +22,14 @@
 
     <!-- -------------------------Testing Credentials------------------------- -->
     <a
-    type="button"
-    class="login-credentials mt-2"
-    data-bs-toggle="modal"
-    data-bs-target="#staticBackdrop"
-    >Click to View Login Credentials</a
+      type="button"
+      class="login-credentials mt-2"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+      >Click to View Login Credentials</a
+    >
+    <a routerLink="/" class="login-credentials mt-0"
+      >Click to Login as Participant/Instructor</a
     >
     <!-- -------------------------Modal------------------------- -->
     <app-modal [modalMessage]="modalMessage" [noButton]="noButton"></app-modal>

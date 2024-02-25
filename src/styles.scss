@@ -161,6 +161,8 @@ main {
   background-color: $light;
   color: $dark;
   padding: 150px 20px 10px;
+  min-height: calc(100vh - 90px);
+
   h1,
   h2,
   h3,
@@ -838,6 +840,9 @@ footer {
   }
 }
 .report {
+  h3 {
+    margin-top: 0;
+  }
   .sub-reports {
     @include flex;
     margin: 20px auto;
