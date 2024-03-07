@@ -18,10 +18,10 @@ export class ForgotPasswordComponent {
 
   // --------------------------------------------------Send Password Reset Link--------------------------------------------------
   sendLink(form: NgForm) {
-    console.log('Form Object  ---> ', form);
-    console.log('Values of Form  ---> ', form.value);
+    // console.log('Form Object  ---> ', form);
+    // console.log('Values of Form  ---> ', form.value);
     const email: string = form.value.email;
-    console.log('Email  ----> ', email);
+    // console.log('Email  ----> ', email);
     this.auth.forgotPassword(email);
     form.reset();
     this.mailSent = true;

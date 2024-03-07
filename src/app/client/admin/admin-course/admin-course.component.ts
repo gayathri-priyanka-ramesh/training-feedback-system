@@ -56,19 +56,19 @@ export class AdminCourseComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     // --------------------------------------------------Required Data Retrival--------------------------------------------------
     this.routeParameterRetrieval.paramMap.subscribe((value: any) => {
-      console.log(
-        "Value passed inside the 'subscribe()' method (paramMap) ---> ",
-        value
-      );
-      console.log(
-        "Router Parameter Key 'id' and 'courseName' of the 'routerPath/:parameterName1/:parameterName2' given in 'app-routing.modules.ts')  ---> ",
-        value.keys
-      );
+      // console.log(
+      //   "Value passed inside the 'subscribe()' method (paramMap) ---> ",
+      //   value
+      // );
+      // console.log(
+      //   "Router Parameter Key 'id' and 'courseName' of the 'routerPath/:parameterName1/:parameterName2' given in 'app-routing.modules.ts')  ---> ",
+      //   value.keys
+      // );
       const id = value.get('id');
-      console.log(
-        'Get the Router Parameter Value (id to be retrieved) --->   ',
-        id
-      );
+      // console.log(
+      //   'Get the Router Parameter Value (id to be retrieved) --->   ',
+      //   id
+      // );
 
       // -------------------------Required Course-------------------------
       this.requiredCourse = this.adminData.getCourseData()[id - 1];

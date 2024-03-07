@@ -67,14 +67,14 @@ export class ApplicantTableComponent implements OnInit, OnDestroy {
     this.applicantApi.getApprovalData().subscribe(
       (res) => {
         // -------------------------Form Values-------------------------
-        console.log('Applicant Count  ---> ', this.applicantCount);
+        // console.log('Applicant Count  ---> ', this.applicantCount);
         this.applicantDataStore = res.slice(0, this.applicantCount);
-        console.log('GET Success  ---> ', this.applicantDataStore);
+        // console.log('GET Success  ---> ', this.applicantDataStore);
         // -------------------------Data Table Trigger-------------------------
         this.dtTrigger.next(null);
       },
       (error) => {
-        console.log('GET Fail  ---> ', error);
+        // console.log('GET Fail  ---> ', error);
         alert('GET not Success');
       }
     );
@@ -95,13 +95,13 @@ export class ApplicantTableComponent implements OnInit, OnDestroy {
   // --------------------------------------------------PUT Approval Details--------------------------------------------------
   updateApprovalStatus() {
     // -------------------------Form Values-------------------------
-    console.log('Approval Form  ---> ', this.applicantForm);
-    console.log('Approval Values  ---> ', this.applicantForm.value);
+    // console.log('Approval Form  ---> ', this.applicantForm);
+    // console.log('Approval Values  ---> ', this.applicantForm.value);
     this.applicantObj.status = this.applicantForm.value.status;
     this.applicantObj.comment = this.applicantForm.value.comment;
-    console.log('Applicant Object  ---> ', this.applicantObj);
-    console.log('Applicant Status  ---> ', this.applicantObj.status);
-    console.log('Applicant Comment  ---> ', this.applicantObj.comment);
+    // console.log('Applicant Object  ---> ', this.applicantObj);
+    // console.log('Applicant Status  ---> ', this.applicantObj.status);
+    // console.log('Applicant Comment  ---> ', this.applicantObj.comment);
 
     // -------------------------Validate Approval Choice-------------------------
     if (
@@ -122,7 +122,7 @@ export class ApplicantTableComponent implements OnInit, OnDestroy {
         .editApproval(this.applicantObj, Number(this.applicantObj.id))
         .subscribe(
           (res) => {
-            console.log('PUT Success  ---> ', res);
+            // console.log('PUT Success  ---> ', res);
             let closeButtonRef: HTMLButtonElement = document.getElementById(
               'close'
             ) as HTMLButtonElement;
@@ -131,7 +131,7 @@ export class ApplicantTableComponent implements OnInit, OnDestroy {
             this.getApprovalStatus();
           },
           (error) => {
-            console.log('PUT Fail  ---> ', error);
+            // console.log('PUT Fail  ---> ', error);
             alert('PUT not successful');
           }
         );

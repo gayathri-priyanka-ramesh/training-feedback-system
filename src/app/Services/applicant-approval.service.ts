@@ -15,8 +15,8 @@ export class ApplicantApprovalService {
   getApprovalData() {
     return this.http.get<any>(this.applicantUrl).pipe(
       map((result: any) => {
-        console.log('-----GET-----');
-        console.log('Result  ---> ', result);
+        // console.log('-----GET-----');
+        // console.log('Result  ---> ', result);
         return result;
       })
     );
@@ -27,8 +27,8 @@ export class ApplicantApprovalService {
   editApproval(data: any, id: number) {
     return this.http.put<any>(this.applicantUrl + id, data).pipe(
       map((result: any) => {
-        console.log('-----Edit-----');
-        console.log('Result  ---> ', result);
+        // console.log('-----Edit-----');
+        // console.log('Result  ---> ', result);
         return result;
       })
     );

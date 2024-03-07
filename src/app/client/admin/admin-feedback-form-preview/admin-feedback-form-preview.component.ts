@@ -31,30 +31,30 @@ export class AdminFeedbackFormPreviewComponent implements OnInit {
   ngOnInit(): void {
     // --------------------------------------------------Required Data Retrival--------------------------------------------------
     this.routeParameterRetrieval.paramMap.subscribe((value: any) => {
-      console.log(
-        "Value passed inside the 'subscribe()' method (paramMap) ---> ",
-        value
-      );
-      console.log(
-        "Router Parameter Key 'id' and 'courseName' of the 'routerPath/:parameterName1/:parameterName2' given in 'app-routing.modules.ts')  ---> ",
-        value.keys
-      );
+      // console.log(
+      //   "Value passed inside the 'subscribe()' method (paramMap) ---> ",
+      //   value
+      // );
+      // console.log(
+      //   "Router Parameter Key 'id' and 'courseName' of the 'routerPath/:parameterName1/:parameterName2' given in 'app-routing.modules.ts')  ---> ",
+      //   value.keys
+      // );
       const id = value.get('id');
-      console.log(
-        'Get the Router Parameter Value (id to be retrieved) --->   ',
-        id
-      );
+      // console.log(
+      //   'Get the Router Parameter Value (id to be retrieved) --->   ',
+      //   id
+      // );
       const module = value.get('module');
-      console.log(
-        'Get the Router Parameter Value (module to be retrieved) --->   ',
-        module
-      );
+      // console.log(
+      //   'Get the Router Parameter Value (module to be retrieved) --->   ',
+      //   module
+      // );
 
       // -------------------------Required Course-------------------------
       this.requiredCourse = this.adminData.getCourseData()[id - 1];
-      console.log('Required Course  ---> ', this.requiredCourse);
+      // console.log('Required Course  ---> ', this.requiredCourse);
       this.moduleInfo = module;
-      console.log('moduleInfo  ---> ', this.moduleInfo);
+      // console.log('moduleInfo  ---> ', this.moduleInfo);
       this.route =
         '/admin/home/course/' +
         this.requiredCourse.id +

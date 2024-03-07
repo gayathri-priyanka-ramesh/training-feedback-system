@@ -96,22 +96,22 @@ export class FeedbackFormComponent implements OnInit {
     this.feedbackQuestionsApi.getFeedbackQuestions().subscribe(
       (res) => {
         // -------------------------Form Values-------------------------
-        console.log('GET Success  ---> ', res);
+        // console.log('GET Success  ---> ', res);
         this.anonymous = res[res.length - 1].anonymous;
-        console.log('anonymous  ---> ', this.anonymous);
+        // console.log('anonymous  ---> ', this.anonymous);
         this.additionalComment = res[res.length - 1].additionalComment;
-        console.log('additionalComment  ---> ', this.additionalComment);
+        // console.log('additionalComment  ---> ', this.additionalComment);
         let questionSets = res[res.length - 1].questionSets;
-        console.log('questionSets  ---> ', questionSets);
+        // console.log('questionSets  ---> ', questionSets);
         let trainingQuestionSet = questionSets[0].questions;
 
         // -------------------------Training Evaluation-------------------------
-        console.log('trainingQuestionSet  ---> ', trainingQuestionSet);
+        // console.log('trainingQuestionSet  ---> ', trainingQuestionSet);
         for (let ques of trainingQuestionSet) {
-          console.log('ques  ---> ', ques);
+          // console.log('ques  ---> ', ques);
           this.trainingQuestionsList.push(ques.questionText);
         }
-        console.log('trainingQuestionsList  ---> ', this.trainingQuestionsList);
+        // console.log('trainingQuestionsList  ---> ', this.trainingQuestionsList);
         this.trainingQuestionIds = this.trainingQuestionIds.concat(
           this.generateQuestionIds(
             'trainingQuesText',
@@ -119,16 +119,16 @@ export class FeedbackFormComponent implements OnInit {
             this.trainingQuestionsList.length
           )
         );
-        console.log('trainingQuestionIds  ---> ', this.trainingQuestionIds);
+        // console.log('trainingQuestionIds  ---> ', this.trainingQuestionIds);
 
         // -------------------------Instructor Evaluation-------------------------
         for (let ques of questionSets[1].questions) {
           this.instructorQuestionsList.push(ques.questionText);
         }
-        console.log(
-          'instructorQuestionsList  ---> ',
-          this.instructorQuestionsList
-        );
+        // console.log(
+        //   'instructorQuestionsList  ---> ',
+        //   this.instructorQuestionsList
+        // );
         this.instructorQuestionIds = this.instructorQuestionIds.concat(
           this.generateQuestionIds(
             'instructorQuesText',
@@ -136,14 +136,14 @@ export class FeedbackFormComponent implements OnInit {
             this.instructorQuestionsList.length
           )
         );
-        console.log('instructorQuestionIds  ---> ', this.instructorQuestionIds);
+        // console.log('instructorQuestionIds  ---> ', this.instructorQuestionIds);
 
         // -------------------------Form Initialization-------------------------
         this.initForm();
       },
       (error) => {
-        console.log('GET Fail  ---> ', error);
-        alert('GET not Success');
+        // console.log('GET Fail  ---> ', error);
+        // alert('GET not Success');
       }
     );
   }
@@ -171,7 +171,7 @@ export class FeedbackFormComponent implements OnInit {
       ...this.generateFormControls(this.instructorQuestionIds),
       comments: [''],
     });
-    console.log('Form Initialized');
+    // console.log('Form Initialized');
   }
   // -------------------------Dynamic Control Generation-------------------------
   private generateFormControls(questionIds: string[]): { [key: string]: any } {
@@ -179,7 +179,7 @@ export class FeedbackFormComponent implements OnInit {
     questionIds.forEach((id) => {
       controls[id] = [''];
     });
-    console.log('Controls  ---> ', controls);
+    // console.log('Controls  ---> ', controls);
     return controls;
   }
   // --------------------------------------------------End of Form Initialization--------------------------------------------------
@@ -190,19 +190,19 @@ export class FeedbackFormComponent implements OnInit {
     this.trainingCount = 0;
     for (let i of this.trainingQuestionIds) {
       const ans = this.feedbackForm.value[i];
-      console.log('Value of', i, ' ---> ', ans);
+      // console.log('Value of', i, ' ---> ', ans);
       if (ans) this.trainingCount++;
     }
-    console.log('Training Count  ---> ', this.trainingCount);
+    // console.log('Training Count  ---> ', this.trainingCount);
 
     // -------------------------Instructor Evaluation-------------------------
     this.instructorCount = 0;
     for (let i of this.instructorQuestionIds) {
       const ans = this.feedbackForm.value[i];
-      console.log('Value of', i, ' ---> ', ans);
+      // console.log('Value of', i, ' ---> ', ans);
       if (ans) this.instructorCount++;
     }
-    console.log('Instructor Count  ---> ', this.instructorCount);
+    // console.log('Instructor Count  ---> ', this.instructorCount);
 
     // -------------------------Valid Feedback Response-------------------------
     if (this.trainingCount >= 2 && this.instructorCount >= 2) {
@@ -210,8 +210,8 @@ export class FeedbackFormComponent implements OnInit {
         "Your feedback has been successfully submitted! Please wait for your Instructor's response!";
       this.modalButtonMessage = 'View Course';
       this.successRoute = this.confirmRoute;
-      console.log('Form is valid  ---> ', this.feedbackForm);
-      console.log('values  ---> ', this.feedbackForm.value);
+      // console.log('Form is valid  ---> ', this.feedbackForm);
+      // console.log('values  ---> ', this.feedbackForm.value);
       this.getFeedbackResponse();
     }
 
@@ -220,8 +220,8 @@ export class FeedbackFormComponent implements OnInit {
       this.modalMessage =
         'Answer at least 2 questions in the first 2 sections to submit your feedback';
       this.modalButtonMessage = 'Answer Questions';
-      console.log('Form is invalid  ---> ', this.feedbackForm);
-      console.log('values  ---> ', this.feedbackForm.value);
+      // console.log('Form is invalid  ---> ', this.feedbackForm);
+      // console.log('values  ---> ', this.feedbackForm.value);
     }
   }
   // --------------------------------------------------End of Form Submission--------------------------------------------------
@@ -230,13 +230,13 @@ export class FeedbackFormComponent implements OnInit {
   getFeedbackResponse() {
     this.feedbackResponseApi.getFeedbackResponseData().subscribe(
       (res: any) => {
-        console.log('GET Success  ---> ', res);
+        // console.log('GET Success  ---> ', res);
         this.idLength = String(res.length);
-        console.log('idLength  ---> ', this.idLength);
+        // console.log('idLength  ---> ', this.idLength);
         this.postFeedbackResponse();
       },
       (error) => {
-        console.log('GET Fail  ---> ', error);
+        // console.log('GET Fail  ---> ', error);
         alert('GET not Success');
       }
     );
@@ -273,21 +273,21 @@ export class FeedbackFormComponent implements OnInit {
       this.feedbackForm.value.environment;
     this.participantFeedbackResponseObj.comments =
       this.feedbackForm.value.comments;
-    console.log(
-      'participantFeedbackResponseObj  ---> ',
-      this.participantFeedbackResponseObj
-    );
+    // console.log(
+    //   'participantFeedbackResponseObj  ---> ',
+    //   this.participantFeedbackResponseObj
+    // );
 
     // -------------------------POST Feedback Response-------------------------
     this.feedbackResponseApi
       .postFeedbackResponseData(this.participantFeedbackResponseObj)
       .subscribe(
         (res) => {
-          console.log('POST Success  ---> ', res);
+          // console.log('POST Success  ---> ', res);
           this.feedbackForm.reset();
         },
         (error) => {
-          console.log('POST Fail  ---> ', error);
+          // console.log('POST Fail  ---> ', error);
           alert('POST not Success');
         }
       );

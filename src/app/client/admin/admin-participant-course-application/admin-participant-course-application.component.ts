@@ -42,37 +42,37 @@ export class AdminParticipantCourseApplicationComponent implements OnInit {
   ngOnInit(): void {
     // --------------------------------------------------Required Data Retrival--------------------------------------------------
     this.routeParameterRetrieval.paramMap.subscribe((value: any) => {
-      console.log(
-        "Value passed inside the 'subscribe()' method (paramMap) ---> ",
-        value
-      );
-      console.log(
-        "Router Parameter Key 'id' and 'courseName' of the 'routerPath/:parameterName1/:parameterName2' given in 'app-routing.modules.ts')  ---> ",
-        value.keys
-      );
+      // console.log(
+      //   "Value passed inside the 'subscribe()' method (paramMap) ---> ",
+      //   value
+      // );
+      // console.log(
+      //   "Router Parameter Key 'id' and 'courseName' of the 'routerPath/:parameterName1/:parameterName2' given in 'app-routing.modules.ts')  ---> ",
+      //   value.keys
+      // );
       const pid = value.get('pid');
-      console.log(
-        'Get the Router Parameter Value (pid to be retrieved) --->   ',
-        pid
-      );
+      // console.log(
+      //   'Get the Router Parameter Value (pid to be retrieved) --->   ',
+      //   pid
+      // );
       const participantName = value.get('participantName');
-      console.log(
-        'Get the Router Parameter Value (participantName to be retrieved) --->   ',
-        participantName
-      );
+      // console.log(
+      //   'Get the Router Parameter Value (participantName to be retrieved) --->   ',
+      //   participantName
+      // );
       const id = value.get('id');
-      console.log(
-        'Get the Router Parameter Value (id to be retrieved) --->   ',
-        id
-      );
+      // console.log(
+      //   'Get the Router Parameter Value (id to be retrieved) --->   ',
+      //   id
+      // );
 
       // -------------------------Required Applicant-------------------------
       this.requiredApplicant = this.adminData.getParticipantData()[pid - 1];
-      console.log('Required Applicant  ---> ', this.requiredApplicant);
+      // console.log('Required Applicant  ---> ', this.requiredApplicant);
 
       // -------------------------Required Course-------------------------
       this.requiredCourse = this.adminData.getCourseData().slice(7)[id - 1];
-      console.log('Required Course  ---> ', this.requiredCourse);
+      // console.log('Required Course  ---> ', this.requiredCourse);
 
       this.route = '/admin/home/participant/' + pid + '/' + participantName;
     });
@@ -99,19 +99,19 @@ export class AdminParticipantCourseApplicationComponent implements OnInit {
 
   // -------------------------Form Submission-------------------------
   formApproval() {
-    console.log('Approval Form  ---> ', this.applicantForm);
-    console.log('Approval Values  ---> ', this.applicantForm.value);
+    // console.log('Approval Form  ---> ', this.applicantForm);
+    // console.log('Approval Values  ---> ', this.applicantForm.value);
     const approvalStatus = this.applicantForm.value.status;
     const approvalComment = this.applicantForm.value.comment;
-    console.log('Applicant Status  ---> ', approvalStatus);
-    console.log('Applicant Comment  ---> ', approvalComment);
+    // console.log('Applicant Status  ---> ', approvalStatus);
+    // console.log('Applicant Comment  ---> ', approvalComment);
 
     if (approvalStatus !== 'Approved' && approvalStatus !== 'Disapproved') {
       this.statusValidation = true;
     } else if (approvalComment === '') {
       this.commentValidation = true;
     } else {
-      console.log('Submit Success');
+      // console.log('Submit Success');
       let closeRef: HTMLAnchorElement = document.getElementById(
         'submit-result'
       ) as HTMLAnchorElement;

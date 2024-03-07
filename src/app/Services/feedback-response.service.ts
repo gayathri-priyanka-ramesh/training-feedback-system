@@ -15,8 +15,8 @@ export class FeedbackResponseService {
   getFeedbackResponseData() {
     return this.http.get<any>(this.feedbackResponseUrl).pipe(
       map((result: any) => {
-        console.log('-----GET-----');
-        console.log('Result  ---> ', result);
+        // console.log('-----GET-----');
+        // console.log('Result  ---> ', result);
         return result;
       })
     );
@@ -27,8 +27,8 @@ export class FeedbackResponseService {
   editFeedbackResponseData(data: any, id: number) {
     return this.http.put<any>(this.feedbackResponseUrl + id, data).pipe(
       map((result: any) => {
-        console.log('-----PUT-----');
-        console.log('Result  ---> ', result);
+        // console.log('-----PUT-----');
+        // console.log('Result  ---> ', result);
         return result;
       })
     );
@@ -39,8 +39,8 @@ export class FeedbackResponseService {
   postFeedbackResponseData(data: any) {
     return this.http.post<any>(this.feedbackResponseUrl, data).pipe(
       map((result: any) => {
-        console.log('-----POST-----');
-        console.log('Result  ---> ', result);
+        // console.log('-----POST-----');
+        // console.log('Result  ---> ', result);
         return result;
       })
     );

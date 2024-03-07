@@ -11,9 +11,9 @@ export class NavigationService {
   fragmentRouting() {
     this.routeParameterRetrieval.fragment.subscribe((fragment) => {
       if (fragment) {
-        console.log('Fragment  ---> ', fragment);
+        // console.log('Fragment  ---> ', fragment);
         const element = document.getElementById(fragment);
-        console.log('Element  ---> ', element);
+        // console.log('Element  ---> ', element);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }

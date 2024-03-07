@@ -36,16 +36,16 @@ export class ParticipantHomeComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // -------------------------Login Session-------------------------
     this.userName = sessionStorage.getItem('userName') as string;
-    console.log('Username  ---> ', this.userName);
+    // console.log('Username  ---> ', this.userName);
     // -------------------------End of Login Session-------------------------
 
     // -------------------------Retrieve Required Data-------------------------
     this.enrolledCourses = this.courseCardData.getEnrolledCourses();
-    console.log('Enrolled Courses Array  ---> ', this.enrolledCourses);
+    // console.log('Enrolled Courses Array  ---> ', this.enrolledCourses);
     this.appliedCourses = this.courseCardData.getAppliedCourses();
-    console.log('Applied Courses Array  ---> ', this.appliedCourses);
+    // console.log('Applied Courses Array  ---> ', this.appliedCourses);
     this.trendingCourses = this.courseCardData.getTrendingCourses();
-    console.log('Trending Courses Array  ---> ', this.trendingCourses);
+    // console.log('Trending Courses Array  ---> ', this.trendingCourses);
     // -------------------------End of Retrieve Required Data-------------------------
 
     // -------------------------Info Area Rings Data-------------------------

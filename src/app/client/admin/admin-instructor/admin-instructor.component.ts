@@ -41,43 +41,43 @@ export class AdminInstructorComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // --------------------------------------------------Required Data Retrival--------------------------------------------------
     this.routeParameterRetrieval.paramMap.subscribe((value: any) => {
-      console.log(
-        "Value passed inside the 'subscribe()' method (paramMap) ---> ",
-        value
-      );
-      console.log(
-        "Router Parameter Key 'id' and 'courseName' of the 'routerPath/:parameterName1/:parameterName2' given in 'app-routing.modules.ts')  ---> ",
-        value.keys
-      );
+      // console.log(
+      //   "Value passed inside the 'subscribe()' method (paramMap) ---> ",
+      //   value
+      // );
+      // console.log(
+      //   "Router Parameter Key 'id' and 'courseName' of the 'routerPath/:parameterName1/:parameterName2' given in 'app-routing.modules.ts')  ---> ",
+      //   value.keys
+      // );
       const id = value.get('id');
-      console.log(
-        'Get the Router Parameter Value (id to be retrieved) --->   ',
-        id
-      );
+      // console.log(
+      //   'Get the Router Parameter Value (id to be retrieved) --->   ',
+      //   id
+      // );
 
       // -------------------------Required Instructor-------------------------
       this.requiredInstructor = this.adminData.getInstructorData()[id - 1];
-      console.log('Required Instructor  ---> ', this.requiredInstructor);
-      console.log(
-        'Ongoing Courses  ---> ',
-        this.requiredInstructor.ongoingCourses
-      );
-      console.log(
-        'Upcoming Courses  ---> ',
-        this.requiredInstructor.upcomingCourses
-      );
+      // console.log('Required Instructor  ---> ', this.requiredInstructor);
+      // console.log(
+      //   'Ongoing Courses  ---> ',
+      //   this.requiredInstructor.ongoingCourses
+      // );
+      // console.log(
+      //   'Upcoming Courses  ---> ',
+      //   this.requiredInstructor.upcomingCourses
+      // );
 
       // -------------------------Ongoing Course-------------------------
       this.ongoingCourses = this.courseCardData
         .getOngoingCourses()
         .slice(0, this.requiredInstructor.ongoingCourses);
-      console.log('Enrolled Courses Array  ---> ', this.ongoingCourses);
+      // console.log('Enrolled Courses Array  ---> ', this.ongoingCourses);
 
       // -------------------------Upcoming Course-------------------------
       this.upcomingCourses = this.courseCardData
         .getUpcomingCourses()
         .slice(0, this.requiredInstructor.upcomingCourses);
-      console.log('Applied Courses Array  ---> ', this.upcomingCourses);
+      // console.log('Applied Courses Array  ---> ', this.upcomingCourses);
     });
 
     // -------------------------Info Area Rings-------------------------

@@ -47,10 +47,10 @@ export class FeedbackResponseTableComponent implements OnInit {
     this.feedbackResponseApi.getFeedbackResponseData().subscribe(
       (res) => {
         this.feedbackResponseDataStore = res;
-        console.log('GET Success  ---> ', this.feedbackResponseDataStore);
+        // console.log('GET Success  ---> ', this.feedbackResponseDataStore);
       },
       (error) => {
-        console.log('GET Fail  ---> ', error);
+        // console.log('GET Fail  ---> ', error);
         alert('GET not Success');
       }
     );
@@ -60,18 +60,18 @@ export class FeedbackResponseTableComponent implements OnInit {
   // --------------------------------------------------PUT Response Details--------------------------------------------------
   editFeedbackResponse() {
     if (!this.responsesSaved) {
-      console.log('Response Save Confirm Clicked');
+      // console.log('Response Save Confirm Clicked');
       this.feedbackResponseDataStore.forEach((feedbackResponse, index) => {
-        console.log('Response  ---> ', feedbackResponse);
+        // console.log('Response  ---> ', feedbackResponse);
         // -------------------------Instructor Response Cell-------------------------
         this.responseCell = document.getElementById(
           `response-cell-${index}`
         ) as HTMLTableCellElement;
-        console.log('Response Cell', this.responseCell);
+        // console.log('Response Cell', this.responseCell);
 
         // -------------------------Instructor Response Value-------------------------
         const responseValue: string = this.getResponseValue(index);
-        console.log('Response Value  ---> ', responseValue);
+        // console.log('Response Value  ---> ', responseValue);
 
         // -------------------------Update Instructor Response Value-------------------------
         this.feedbackResponseDataStore[index].response = responseValue;
@@ -82,34 +82,34 @@ export class FeedbackResponseTableComponent implements OnInit {
           )
           .subscribe(
             (res) => {
-              console.log('PUT Success  ---> ', res);
+              // console.log('PUT Success  ---> ', res);
               this.getFeedbackResponse();
             },
             (error) => {
-              console.log('PUT Fail  ---> ', error);
+              // console.log('PUT Fail  ---> ', error);
               alert('PUT not successful');
             }
           );
       });
       // -------------------------Responses Saved-------------------------
       this.responsesSaved = true;
-      console.log('Responses are Saved');
-      console.log(
-        'FeedbackResponseDataStore  ---> ',
-        this.feedbackResponseDataStore
-      );
+      // console.log('Responses are Saved');
+      // console.log(
+      //   'FeedbackResponseDataStore  ---> ',
+      //   this.feedbackResponseDataStore
+      // );
     }
   }
   // --------------------------------------------------End of PUT Response Details--------------------------------------------------
 
   // --------------------------------------------------Set Instructor Response Data--------------------------------------------------
   getResponseValue(index: number): string {
-    console.log('Index  ---> ', index);
+    // console.log('Index  ---> ', index);
     const textarea = document.getElementById(
       `response-${index}`
     ) as HTMLTextAreaElement;
-    console.log('Textarea  ---> ', textarea);
-    console.log('Textarea Value  ---> ', textarea.value);
+    // console.log('Textarea  ---> ', textarea);
+    // console.log('Textarea Value  ---> ', textarea.value);
     return textarea.value;
   }
   // --------------------------------------------------End of Set Instructor Response Data--------------------------------------------------

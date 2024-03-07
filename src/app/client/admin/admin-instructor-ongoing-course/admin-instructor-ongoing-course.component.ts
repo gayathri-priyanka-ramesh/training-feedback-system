@@ -45,39 +45,39 @@ export class AdminInstructorOngoingCourseComponent
   ngOnInit(): void {
     // --------------------------------------------------Required Data Retrival--------------------------------------------------
     this.routeParameterRetrieval.paramMap.subscribe((value: any) => {
-      console.log(
-        "Value passed inside the 'subscribe()' method (paramMap) ---> ",
-        value
-      );
-      console.log(
-        "Router Parameter Key 'id' and 'courseName' of the 'routerPath/:parameterName1/:parameterName2' given in 'app-routing.modules.ts')  ---> ",
-        value.keys
-      );
+      // console.log(
+      //   "Value passed inside the 'subscribe()' method (paramMap) ---> ",
+      //   value
+      // );
+      // console.log(
+      //   "Router Parameter Key 'id' and 'courseName' of the 'routerPath/:parameterName1/:parameterName2' given in 'app-routing.modules.ts')  ---> ",
+      //   value.keys
+      // );
       const iid = value.get('iid');
-      console.log(
-        'Get the Router Parameter Value (iid to be retrieved) --->   ',
-        iid
-      );
+      // console.log(
+      //   'Get the Router Parameter Value (iid to be retrieved) --->   ',
+      //   iid
+      // );
       const id = value.get('id');
-      console.log(
-        'Get the Router Parameter Value (id to be retrieved) --->   ',
-        id
-      );
+      // console.log(
+      //   'Get the Router Parameter Value (id to be retrieved) --->   ',
+      //   id
+      // );
 
       // -------------------------Required Instructor-------------------------
       this.requiredInstructor = this.adminData.getInstructorData()[iid - 1];
-      console.log('Required Instructor  ---> ', this.requiredInstructor);
+      // console.log('Required Instructor  ---> ', this.requiredInstructor);
 
       // -------------------------Required Course-------------------------
       this.requiredCourse = this.adminData.getCourseData()[id - 1];
-      console.log('Required Course  ---> ', this.requiredCourse);
+      // console.log('Required Course  ---> ', this.requiredCourse);
       this.starsArray = this.adminData.getStars(this.requiredCourse.rating);
 
       // -------------------------Participant List-------------------------
       this.participantList = this.adminData
         .getParticipantData()
         .slice(0, this.requiredCourse.participantCount);
-      console.log('Participant List ---> ', this.participantList);
+      // console.log('Participant List ---> ', this.participantList);
 
       // -------------------------Info Area Ring Data-------------------------
       this.ringsData = [

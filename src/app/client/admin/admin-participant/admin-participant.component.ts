@@ -41,43 +41,43 @@ export class AdminParticipantComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // --------------------------------------------------Required Data Retrival--------------------------------------------------
     this.routeParameterRetrieval.paramMap.subscribe((value: any) => {
-      console.log(
-        "Value passed inside the 'subscribe()' method (paramMap) ---> ",
-        value
-      );
-      console.log(
-        "Router Parameter Key 'id' and 'courseName' of the 'routerPath/:parameterName1/:parameterName2' given in 'app-routing.modules.ts')  ---> ",
-        value.keys
-      );
+      // console.log(
+      //   "Value passed inside the 'subscribe()' method (paramMap) ---> ",
+      //   value
+      // );
+      // console.log(
+      //   "Router Parameter Key 'id' and 'courseName' of the 'routerPath/:parameterName1/:parameterName2' given in 'app-routing.modules.ts')  ---> ",
+      //   value.keys
+      // );
       const id = value.get('id');
-      console.log(
-        'Get the Router Parameter Value (id to be retrieved) --->   ',
-        id
-      );
+      // console.log(
+      //   'Get the Router Parameter Value (id to be retrieved) --->   ',
+      //   id
+      // );
 
       // -------------------------Required Participant-------------------------
       this.requiredParticipant = this.adminData.getParticipantData()[id - 1];
-      console.log('Required Participant  ---> ', this.requiredParticipant);
-      console.log(
-        'Enrolled Courses  ---> ',
-        this.requiredParticipant.enrolledCourses
-      );
-      console.log(
-        'Applied Courses  ---> ',
-        this.requiredParticipant.appliedCourses
-      );
+      // console.log('Required Participant  ---> ', this.requiredParticipant);
+      // console.log(
+      //   'Enrolled Courses  ---> ',
+      //   this.requiredParticipant.enrolledCourses
+      // );
+      // console.log(
+      //   'Applied Courses  ---> ',
+      //   this.requiredParticipant.appliedCourses
+      // );
 
       // -------------------------Enrolled Course-------------------------
       this.enrolledCourses = this.courseCardData
         .getEnrolledCourses()
         .slice(0, this.requiredParticipant.enrolledCourses);
-      console.log('Enrolled Courses Array  ---> ', this.enrolledCourses);
+      // console.log('Enrolled Courses Array  ---> ', this.enrolledCourses);
 
       // -------------------------Applications-------------------------
       this.applicationCourses = this.courseCardData
         .getUpcomingCourses()
         .slice(0, this.requiredParticipant.appliedCourses);
-      console.log('Applied Courses Array  ---> ', this.applicationCourses);
+      // console.log('Applied Courses Array  ---> ', this.applicationCourses);
     });
 
     // -------------------------Info Area Ring Data-------------------------

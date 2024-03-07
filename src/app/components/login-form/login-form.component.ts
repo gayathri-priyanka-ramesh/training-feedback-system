@@ -57,26 +57,26 @@ export class LoginFormComponent {
   // --------------------------------------------------Form Submission--------------------------------------------------
   async login() {
     // -------------------------Form Values-------------------------
-    console.log('Login Form  ---> ', this.loginForm);
-    console.log('Login Values  ---> ', this.loginForm.value);
+    // console.log('Login Form  ---> ', this.loginForm);
+    // console.log('Login Values  ---> ', this.loginForm.value);
     let usernameValue = this.loginForm.value.username;
     let passwordValue = this.loginForm.value.password;
-    console.log('Username  ---> ', usernameValue);
-    console.log('Password  ---> ', passwordValue);
+    // console.log('Username  ---> ', usernameValue);
+    // console.log('Password  ---> ', passwordValue);
 
     // -------------------------Firebase Authentication-------------------------
     const isRegisteredUser: boolean = await this.auth.login(
       usernameValue,
       passwordValue
     );
-    console.log('isRegisteredUser  ---> ', isRegisteredUser);
+    // console.log('isRegisteredUser  ---> ', isRegisteredUser);
 
     // -------------------------Submit User Type-------------------------
     const submitButton: HTMLButtonElement = document.querySelector(
       'button.btn.nav-item:focus'
     ) as HTMLButtonElement;
     const submitUser = submitButton?.getAttribute('data-type');
-    console.log("'data-type' of 'submitButton'  ---> ", submitUser);
+    // console.log("'data-type' of 'submitButton'  ---> ", submitUser);
 
     if (isRegisteredUser) {
       // -------------------------Admin Navigation-------------------------
@@ -84,7 +84,7 @@ export class LoginFormComponent {
         submitUser === 'admin' &&
         usernameValue === 'admin@edureview360.org'
       ) {
-        console.log('Admin Login Success');
+        // console.log('Admin Login Success');
         this.router.navigate(['admin/home'], { fragment: 'pageTitle' });
         this.navigatePermit = true;
       }
@@ -95,7 +95,7 @@ export class LoginFormComponent {
           usernameValue === 'jonathan_baker@edureview360.org' ||
           usernameValue === 'gayu.p84@gmail.com')
       ) {
-        console.log('Instructor Login Success');
+        // console.log('Instructor Login Success');
         this.router.navigate(['instructor'], { fragment: 'pageTitle' });
         this.navigatePermit = true;
       }
@@ -106,14 +106,14 @@ export class LoginFormComponent {
           usernameValue === 'emily_carter@edureview360.org' ||
           usernameValue === 'gayu.p84@gmail.com')
       ) {
-        console.log('Participant Login Success');
+        // console.log('Participant Login Success');
         this.router.navigate(['participant'], { fragment: 'pageTitle' });
         this.navigatePermit = true;
       }
 
       // -------------------------Invalid User Type-------------------------
       else {
-        console.log('Usertype Not Matched');
+        // console.log('Usertype Not Matched');
         this.loginForm.markAllAsTouched();
         if (usernameValue !== '' && passwordValue !== '') {
           this.submitWarningVisible = true;
@@ -121,7 +121,7 @@ export class LoginFormComponent {
           this.submitWarningVisible = false;
         }
       }
-      console.log('NavigatePermit  ---> ', this.navigatePermit);
+      // console.log('NavigatePermit  ---> ', this.navigatePermit);
 
       // -------------------------Login Session-------------------------
       if (this.navigatePermit) {
@@ -136,14 +136,14 @@ export class LoginFormComponent {
           lastname.charAt(0).toUpperCase() +
           lastname.substring(1);
         sessionStorage.setItem('userName', this.userName);
-        console.log('Local Stroage  ---> ', localStorage);
-        console.log('Session Storage  ---> ', sessionStorage);
+        // console.log('Local Stroage  ---> ', localStorage);
+        // console.log('Session Storage  ---> ', sessionStorage);
         this.loginForm.reset();
       }
     }
     // -------------------------Invalid Credential-------------------------
     else {
-      console.log('User Not Found');
+      // console.log('User Not Found');
       this.loginForm.markAllAsTouched();
       if (usernameValue !== '' && passwordValue !== '') {
         this.submitWarningVisible = true;

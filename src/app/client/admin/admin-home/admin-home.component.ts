@@ -42,21 +42,21 @@ export class AdminHomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     // -------------------------Login Session-------------------------
     this.username = sessionStorage.getItem('email')?.split('@')[0] as string;
-    console.log('Username  ---> ', this.username);
+    // console.log('Username  ---> ', this.username);
     // -------------------------End of Login Session-------------------------
 
     // --------------------------------------------------Required Data Retrival--------------------------------------------------
     // -------------------------Course List-------------------------
     this.courseList = this.adminData.getCourseData();
-    console.log('Course List  ---> ', this.courseList);
+    // console.log('Course List  ---> ', this.courseList);
 
     // -------------------------Instructor List-------------------------
     this.instructorList = this.adminData.getInstructorData();
-    console.log('Instructor List  ---> ', this.instructorList);
+    // console.log('Instructor List  ---> ', this.instructorList);
 
     // -------------------------Participant List-------------------------
     this.participantList = this.adminData.getParticipantData();
-    console.log('Participant List  ---> ', this.participantList);
+    // console.log('Participant List  ---> ', this.participantList);
 
     // -------------------------Stars Array-------------------------
     this.getStarsArray = this.adminData.getStars;

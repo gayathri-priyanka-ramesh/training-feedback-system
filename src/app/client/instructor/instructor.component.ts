@@ -15,13 +15,13 @@ export class InstructorComponent implements OnInit {
   ngOnInit(): void {
     // --------------------------------------------------Login Session--------------------------------------------------
     this.email = sessionStorage.getItem('email') as string;
-    console.log('Email  ---> ', this.email);
+    // console.log('Email  ---> ', this.email);
     // --------------------------------------------------End of Login Session--------------------------------------------------
   }
 
   // --------------------------------------------------Logout--------------------------------------------------
   logout() {
-    console.log('-----Logout-----');
+    // console.log('-----Logout-----');
     this.auth.logout();
     this.router.navigate(['/']);
   }

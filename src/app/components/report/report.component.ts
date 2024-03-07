@@ -73,7 +73,7 @@ export class ReportComponent implements OnInit {
         ],
       },
     });
-    console.log('Training Evaluation Chart Generated');
+    // console.log('Training Evaluation Chart Generated');
   }
   // --------------------------------------------------End of Training Evaluation--------------------------------------------------
 
@@ -107,7 +107,7 @@ export class ReportComponent implements OnInit {
         ],
       },
     });
-    console.log('Instructor Evaluation Chart Generated');
+    // console.log('Instructor Evaluation Chart Generated');
   }
   // --------------------------------------------------End of Instructor Evaluation--------------------------------------------------
 
@@ -146,7 +146,7 @@ export class ReportComponent implements OnInit {
         },
       },
     });
-    console.log('Overall Evaluation Chart Generated');
+    // console.log('Overall Evaluation Chart Generated');
   }
   // --------------------------------------------------End of Overall Evaluation--------------------------------------------------
 

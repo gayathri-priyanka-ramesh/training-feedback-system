@@ -54,22 +54,22 @@ export class CourseCardComponent implements OnInit {
     if ('status' in this.courseData) {
       this.isUpcomingCourse = true;
       this.upcomingCourseData = this.courseData as UpcomingCourse;
-      console.log('Upcoming Course  ---> ', this.upcomingCourseData);
+      // console.log('Upcoming Course  ---> ', this.upcomingCourseData);
     }
     // -------------------------Ongoing Course-------------------------
     else if ('feedbackReceived' in this.courseData) {
       this.isOngoingCourse = true;
       this.ongoingCourseData = this.courseData as OngoingCourse;
-      console.log('Ongoing Course  ---> ', this.ongoingCourseData);
+      // console.log('Ongoing Course  ---> ', this.ongoingCourseData);
     }
     // -------------------------Applied / Trending Course-------------------------
     else if ('rating' in this.courseData && 'startDate' in this.courseData) {
       this.isAppliedTrendingCourse = true;
       this.appliedTrendingCourseData = this.courseData as AppliedTrendingCourse;
-      console.log(
-        'AppliedTrending Course  ---> ',
-        this.appliedTrendingCourseData
-      );
+      // console.log(
+      //   'AppliedTrending Course  ---> ',
+      //   this.appliedTrendingCourseData
+      // );
       this.starArray = this.courseCardData.getStars(
         this.appliedTrendingCourseData.rating
       );
@@ -78,7 +78,7 @@ export class CourseCardComponent implements OnInit {
     else {
       this.isEnrolledCourse = true;
       this.enrolledCourseData = this.courseData as EnrolledCourse;
-      console.log('Enrolled Course  ---> ', this.enrolledCourseData);
+      // console.log('Enrolled Course  ---> ', this.enrolledCourseData);
     }
     // --------------------------------------------------Set Course Type Based on Properties--------------------------------------------------
   }

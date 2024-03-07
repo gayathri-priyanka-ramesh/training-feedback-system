@@ -60,18 +60,18 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
   getFeedbackQuestions() {
     this.feedbackQuestionApi.getFeedbackQuestions().subscribe(
       (res) => {
-        console.log('GET Success  ---> ', res);
+        // console.log('GET Success  ---> ', res);
         this.requiredQuestionForm = res[res.length - 1];
-        console.log('requiredQuestionForm  ---> ', this.requiredQuestionForm);
+        // console.log('requiredQuestionForm  ---> ', this.requiredQuestionForm);
         let trainingQuestionSet = this.requiredQuestionForm.questionSets[0];
-        console.log('trainingQuestionSet  ---> ', trainingQuestionSet);
+        // console.log('trainingQuestionSet  ---> ', trainingQuestionSet);
         let trainingQuestions: FormArray = trainingQuestionSet.questions;
-        console.log('trainingQuestions  ---> ', trainingQuestions);
+        // console.log('trainingQuestions  ---> ', trainingQuestions);
         this.trainingQuesCnt = trainingQuestions.length;
-        console.log('trainingQuesCnt  ---> ', this.trainingQuesCnt);
+        // console.log('trainingQuesCnt  ---> ', this.trainingQuesCnt);
         this.instructorQuesCnt =
           this.requiredQuestionForm.questionSets[1].questions.length;
-        console.log('instructorQuesCnt  ---> ', this.instructorQuesCnt);
+        // console.log('instructorQuesCnt  ---> ', this.instructorQuesCnt);
 
         // -------------------------Form Initialization-------------------------
         this.initializeForm();
@@ -80,7 +80,7 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
         this.loadFeedbackQuestionValue();
       },
       (error) => {
-        console.log('GET Fail  ---> ', error);
+        // console.log('GET Fail  ---> ', error);
         alert('GET not Success');
       }
     );
@@ -98,7 +98,7 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
         this.createQuestionSet(this.instructorQuesCnt),
       ]),
     });
-    console.log('Questions Form initialized ---> ', this.questionsForm);
+    // console.log('Questions Form initialized ---> ', this.questionsForm);
   }
   // --------------------------------------------------End of Form Initialization--------------------------------------------------
 
@@ -113,7 +113,7 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
     this.submitResultButton = document.getElementById(
       'submitResult'
     ) as HTMLButtonElement;
-    console.log('Question Form Data ---> ', this.requiredQuestionForm);
+    // console.log('Question Form Data ---> ', this.requiredQuestionForm);
   }
 
   // --------------------------------------------------Fieldsets Action--------------------------------------------------
@@ -129,7 +129,7 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
 
   // -------------------------Create Question Set-------------------------
   createQuestionSet(quesCnt: number): FormGroup {
-    console.log('QuestionSet created with', quesCnt, 'questions');
+    // console.log('QuestionSet created with', quesCnt, 'questions');
     const questionsArray: any = this.formBuilder.array([]);
     for (let i = 0; i < quesCnt; i++) {
       questionsArray.push(this.createQuestion());
@@ -149,14 +149,14 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
   // -------------------------Add Question Field-------------------------
   addQuestion(index: number) {
     const questions = this.questionSets.at(index).get('questions') as FormArray;
-    console.log('questions  ---> ', questions);
+    // console.log('questions  ---> ', questions);
     questions.push(this.createQuestion());
-    console.log('questions (after ADD)  ---> ', questions);
+    // console.log('questions (after ADD)  ---> ', questions);
   }
 
   // -------------------------Remove Question Field-------------------------
   removeQuestion(setIndex: number, questionIndex: number) {
-    console.log('Remove Question Clicked');
+    // console.log('Remove Question Clicked');
     this.modalMessage = 'Are you sure to remove this question?';
     this.modalConfirmMessage = 'Yes, Remove';
     this.modalButtonMessage = 'Cancel';
@@ -168,39 +168,39 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
     const questions = this.questionSets
       .at(this.removeIndex[0])
       .get('questions') as FormArray;
-    console.log('questions  ---> ', questions);
+    // console.log('questions  ---> ', questions);
     questions.removeAt(this.removeIndex[1]);
-    console.log('questions (after DELETE)  ---> ', questions);
+    // console.log('questions (after DELETE)  ---> ', questions);
   }
   // --------------------------------------------------End of Fieldsets Action--------------------------------------------------
 
   // --------------------------------------------------End of Form Submission--------------------------------------------------
   onSubmit() {
     // -------------------------Form Values-------------------------
-    console.log('Form  ---> ', this.questionsForm);
-    console.log('Form Values  ---> ', this.questionsForm.value);
+    // console.log('Form  ---> ', this.questionsForm);
+    // console.log('Form Values  ---> ', this.questionsForm.value);
 
     this.questionsForm.markAllAsTouched();
     // -------------------------Rating Range Validation-------------------------
     if (this.questionsForm.value.ratingRange === '') {
-      console.log('Rating Range not selected');
+      // console.log('Rating Range not selected');
       const ratingArea: HTMLDivElement = document.getElementById(
         'pageTitle'
       ) as HTMLDivElement;
-      console.log('ratingArea  ---> ', ratingArea);
+      // console.log('ratingArea  ---> ', ratingArea);
       ratingArea?.scrollIntoView({ behavior: 'smooth' });
     }
     // -------------------------Valid Rating Range-------------------------
     else {
       this.questionSets.controls.forEach(
         (questionSet: AbstractControl<any, any>) => {
-          console.log('questionSet  ---> ', questionSet);
+          // console.log('questionSet  ---> ', questionSet);
           // -------------------------Question Count Validation-------------------------
           if (questionSet instanceof FormGroup) {
             const questionsArray = questionSet.get('questions') as FormArray;
-            console.log('questionsArray  ---> ', questionsArray);
+            // console.log('questionsArray  ---> ', questionsArray);
             if (questionsArray.length < 2) {
-              console.log('No. of questions is less than 2');
+              // console.log('No. of questions is less than 2');
               this.validQuestionLength = false;
               this.modalMessage = 'Enter atleast 2 questions in each section';
               this.modalButtonMessage = 'Ok';
@@ -208,22 +208,22 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
             }
             // -------------------------Valid Question Count-------------------------
             else {
-              console.log('No. of questions is more than 2');
+              // console.log('No. of questions is more than 2');
               this.validQuestionLength = true;
               // -------------------------Question Field Validation-------------------------
               questionsArray.controls.forEach(
                 (question: AbstractControl<any, any>) => {
-                  console.log('question  ---> ', question);
+                  // console.log('question  ---> ', question);
                   // -------------------------Valid Question Field-------------------------
                   if (
                     question instanceof FormGroup &&
                     question.get('questionText')?.value.trim()
                   ) {
-                    console.log('Valid Question Field');
+                    // console.log('Valid Question Field');
                   }
                   // -------------------------Empty Question Field-------------------------
                   else {
-                    console.log('Empty Question Field');
+                    // console.log('Empty Question Field');
                     this.emptyQuestionField = true;
                   }
                 }
@@ -234,7 +234,7 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
       );
       // -------------------------Valid Form Submission-------------------------
       if (!this.emptyQuestionField && this.validQuestionLength) {
-        console.log('Valid Question Form');
+        // console.log('Valid Question Form');
         this.validForm = true;
         this.modalMessage = 'Feedback form is created successfully!';
         this.modalConfirmMessage = 'View Form Preview';
@@ -252,26 +252,26 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
         .editFeedbackQuestions(formData, this.requiredQuestionForm.id)
         .subscribe(
           (response) => {
-            console.log('PUT Success  ---> ', response);
+            // console.log('PUT Success  ---> ', response);
           },
           (error) => {
-            console.log('PUT Fail  ---> ', error);
+            // console.log('PUT Fail  ---> ', error);
           }
         );
     } else {
       this.feedbackQuestionApi.postFeedbackQuestions(formData).subscribe(
         (response: any) => {
-          console.log('POST Success  ---> ', response);
+          // console.log('POST Success  ---> ', response);
         },
         (error: any) => {
-          console.log('POST Fail  ---> ', error);
+          // console.log('POST Fail  ---> ', error);
         }
       );
     }
 
     // -------------------------Navigation After POST-------------------------
     this.router.navigate([this.route], { fragment: 'pageTitle' });
-    console.log('Form Uploaded in JSON Server');
+    // console.log('Form Uploaded in JSON Server');
     this.questionsForm.reset();
   }
   // --------------------------------------------------End of POST Question Form--------------------------------------------------

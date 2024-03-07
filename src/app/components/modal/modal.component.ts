@@ -37,16 +37,16 @@ export class ModalComponent implements AfterViewInit {
       this.modalContent = document.getElementById(
         'modalContent'
       ) as HTMLElement;
-      console.log('modalContent  ---> ', this.modalContent);
+      // console.log('modalContent  ---> ', this.modalContent);
       this.modalContent.innerHTML = this.modalMessage;
-      console.log('modalContent (with Message)  ---> ', this.modalContent);
+      // console.log('modalContent (with Message)  ---> ', this.modalContent);
     }
     // --------------------------------------------------End of Set Modal Content--------------------------------------------------
 
     // -------------------------Modal Data-------------------------
-    console.log('Modal Message  ---> ', this.modalMessage);
-    console.log('Modal Button Message  ---> ', this.modalButtonMessage);
-    console.log('Route  ---> ', this.route);
+    // console.log('Modal Message  ---> ', this.modalMessage);
+    // console.log('Modal Button Message  ---> ', this.modalButtonMessage);
+    // console.log('Route  ---> ', this.route);
     // -------------------------End of Modal Data-------------------------
   }
 

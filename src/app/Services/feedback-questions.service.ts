@@ -15,13 +15,13 @@ export class FeedbackQuestionsService {
   postFeedbackQuestions(data: any) {
     return this.http.post<any>(this.feedbackQuestionsUrl, data).pipe(
       map((result: any) => {
-        console.log('-----POST-----');
-        console.log('Result  ---> ', result);
+        // console.log('-----POST-----');
+        // console.log('Result  ---> ', result);
         return result;
       }),
       catchError((error: any) => {
-        console.log('-----POST Error-----');
-        console.log('Error  ---> ', error);
+        // console.log('-----POST Error-----');
+        // console.log('Error  ---> ', error);
         return throwError(error);
       })
     );
@@ -32,13 +32,13 @@ export class FeedbackQuestionsService {
   getFeedbackQuestions() {
     return this.http.get<any>(this.feedbackQuestionsUrl).pipe(
       map((result: any) => {
-        console.log('-----GET-----');
-        console.log('Result  ---> ', result);
+        // console.log('-----GET-----');
+        // console.log('Result  ---> ', result);
         return result;
       }),
       catchError((error: any) => {
-        console.log('-----GET Error-----');
-        console.log('Error  ---> ', error);
+        // console.log('-----GET Error-----');
+        // console.log('Error  ---> ', error);
         return throwError(error);
       })
     );
@@ -49,13 +49,13 @@ export class FeedbackQuestionsService {
   editFeedbackQuestions(data: any, id: string) {
     return this.http.put<any>(this.feedbackQuestionsUrl + id, data).pipe(
       map((result: any) => {
-        console.log('-----PUT-----');
-        console.log('Result  ---> ', result);
+        // console.log('-----PUT-----');
+        // console.log('Result  ---> ', result);
         return result;
       }),
       catchError((error: any) => {
-        console.log('-----PUT Error-----');
-        console.log('Error  ---> ', error);
+        // console.log('-----PUT Error-----');
+        // console.log('Error  ---> ', error);
         return throwError(error);
       })
     );
