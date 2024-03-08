@@ -14,7 +14,7 @@ export class InstructorComponent implements OnInit {
 
   ngOnInit(): void {
     // --------------------------------------------------Login Session--------------------------------------------------
-    this.email = sessionStorage.getItem('email') as string;
+    this.email = localStorage.getItem('email') as string;
     // console.log('Email  ---> ', this.email);
     // --------------------------------------------------End of Login Session--------------------------------------------------
   }

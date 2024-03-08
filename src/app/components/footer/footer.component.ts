@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
     <!-- --------------------------------------------------Footer-------------------------------------------------- -->
     <footer class="container-fluid d-flex">
       <p>&copy; 2023 - EduReview360 - All Rights Reserved</p>
+      <p>Designed by Gayathri Priyanka Ramesh</p>
     </footer>
     <!-- --------------------------------------------------End of Footer-------------------------------------------------- -->
   `,

@@ -38,12 +38,12 @@ export class AuthService {
   logout() {
     this.fireAuth.signOut().then(() => {
       localStorage.removeItem('token');
-      sessionStorage.clear();
+      localStorage.clear();
       // console.log('Logout Success');
     }),
       (err: any) => {
         // console.log('Local Stroage  ---> ', localStorage);
-        // console.log('Session Storage  ---> ', sessionStorage);
+        // console.log('Session Storage  ---> ', localStorage);
         // console.log('Error  ---> ', err);
       };
   }
