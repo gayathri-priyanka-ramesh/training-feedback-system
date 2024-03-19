@@ -18,7 +18,7 @@ export class InstructorComponent implements OnInit {
       this.email = localStorage.getItem('email') as string;
       // console.log('Email  ---> ', this.email);
     } else {
-      console.log('Local Storage is not available');
+      // console.log('Local Storage is not available');
     }
     // --------------------------------------------------End of Login Session--------------------------------------------------
   }
