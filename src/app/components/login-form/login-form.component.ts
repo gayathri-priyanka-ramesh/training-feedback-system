@@ -125,20 +125,23 @@ export class LoginFormComponent {
 
       // -------------------------Login Session-------------------------
       if (this.navigatePermit) {
-        localStorage.setItem('email', usernameValue);
-        let nameString = usernameValue.split('@')[0];
-        let firstname = nameString.split('_')[0];
-        let lastname = nameString.split('_')[1];
-        this.userName =
-          firstname.charAt(0).toUpperCase() +
-          firstname.substring(1) +
-          ' ' +
-          lastname.charAt(0).toUpperCase() +
-          lastname.substring(1);
-        localStorage.setItem('userName', this.userName);
-        // console.log('Local Stroage  ---> ', localStorage);
-        // console.log('Session Storage  ---> ', localStorage);
-        this.loginForm.reset();
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('email', usernameValue);
+          let nameString = usernameValue.split('@')[0];
+          let firstname = nameString.split('_')[0];
+          let lastname = nameString.split('_')[1];
+          this.userName =
+            firstname.charAt(0).toUpperCase() +
+            firstname.substring(1) +
+            ' ' +
+            lastname?.charAt(0).toUpperCase() +
+            lastname?.substring(1);
+          localStorage.setItem('userName', this.userName);
+          // console.log('Local Stroage  ---> ', localStorage);
+          this.loginForm.reset();
+        } else {
+          // console.log('Local Storage is not available');
+        }
       }
     }
     // -------------------------Invalid Credential-------------------------

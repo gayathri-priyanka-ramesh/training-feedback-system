@@ -72,7 +72,7 @@ export class AdminCourseComponent implements OnInit, AfterViewInit, OnDestroy {
 
       // -------------------------Required Course-------------------------
       this.requiredCourse = this.adminData.getCourseData()[id - 1];
-      console.log('Required Course  ---> ', this.requiredCourse);
+      // console.log('Required Course  ---> ', this.requiredCourse);
       this.starsArray = this.adminData.getStars(this.requiredCourse.rating);
     });
 
@@ -80,7 +80,7 @@ export class AdminCourseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.participantList = this.adminData
       .getParticipantData()
       .slice(0, this.requiredCourse.participantCount);
-    console.log('Participant List  ---> ', this.participantList);
+    // console.log('Participant List  ---> ', this.participantList);
 
     // -------------------------Info Area Rings Data-------------------------
     this.ringsData = [

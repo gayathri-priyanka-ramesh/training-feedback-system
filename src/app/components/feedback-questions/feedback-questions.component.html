@@ -236,7 +236,8 @@
               type="button"
               data-bs-dismiss="modal"
               *ngIf="validForm"
-              (click)="uploadQuestions()"
+              [routerLink]="route"
+              fragment="pageTitle"
             >
               {{ modalConfirmMessage }}
             </button>

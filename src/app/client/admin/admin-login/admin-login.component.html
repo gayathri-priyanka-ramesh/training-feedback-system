@@ -1,5 +1,5 @@
 <!-- --------------------------------------------------Main Area-------------------------------------------------- -->
-<main class="home container-fluid d-flex">
+<main class="home container-fluid d-flex" id="pageTitle">
   <!-- --------------------------------------------------Brand Area-------------------------------------------------- -->
   <div class="title row">
     <div class="logo mx-auto">
@@ -20,20 +20,54 @@
       <app-login-form></app-login-form>
     </div>
 
-    <!-- -------------------------Testing Credentials------------------------- -->
+    <!-- --------------------------------------------------Testing Credentials-------------------------------------------------- -->
     <a
       type="button"
-      class="login-credentials mt-2"
+      class="login-credentials mt-0"
       data-bs-toggle="modal"
-      data-bs-target="#staticBackdrop"
+      data-bs-target="#credentialModal"
       >Click to View Login Credentials</a
     >
-    <a routerLink="/" class="login-credentials mt-0"
+    <!-- -------------------------Credential Modal------------------------- -->
+    <div
+      class="modal fade"
+      id="credentialModal"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="credentialLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="d-flex justify-content-between">
+              <h1 class="modal-title fs-5" id="loginModalLabel">
+                Login Credentials
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <br />
+            <div class="login-credentials">
+              <dl>
+                <dt>Admin</dt>
+                <dd><b>Username:</b> admin&#64;edureview360.org</dd>
+                <dd><b>Password:</b> edureview360</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -------------------------End of Credential Modal------------------------- -->
+    <a routerLink="/" fragment="pageTitle" class="login-credentials mt-0"
       >Click to Login as Participant/Instructor</a
     >
-    <!-- -------------------------Modal------------------------- -->
-    <app-modal [modalMessage]="modalMessage" [noButton]="noButton"></app-modal>
-    <!-- -------------------------End of Testing Credentials------------------------- -->
+    <!-- --------------------------------------------------End of Testing Credentials-------------------------------------------------- -->
   </div>
   <!-- --------------------------------------------------End of Form Area-------------------------------------------------- -->
 </main>

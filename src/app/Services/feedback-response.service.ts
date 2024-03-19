@@ -16,7 +16,7 @@ export class FeedbackResponseService {
     return this.http.get<any>(this.feedbackResponseUrl).pipe(
       map((result: any) => {
         // console.log('-----GET-----');
-        // console.log('Result  ---> ', result);
+        // console.log('Result  ---> ',z result);
         return result;
       })
     );

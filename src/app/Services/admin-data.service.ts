@@ -906,7 +906,7 @@ export class AdminDataService {
 
   // -------------------------Stars as per Rating-------------------------
   getStars(rating: number): number[] {
-    let starCntArray = Array.from({ length: rating }, (_, index) => index);
+    let starCntArray = Array(rating);
     // console.log('Star Count Array  ---> ', starCntArray);
     return starCntArray;
   }

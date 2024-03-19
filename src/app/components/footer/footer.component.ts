@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   // --------------------------------------------------Footer--------------------------------------------------
   template: `
     <!-- --------------------------------------------------Footer-------------------------------------------------- -->
-    <footer class="container-fluid d-flex">
-      <p>&copy; 2023 - EduReview360 - All Rights Reserved</p>
-      <p>Designed by Gayathri Priyanka Ramesh</p>
+    <footer class="container-fluid d-flex align-content-center">
+      <p class="my-0">&copy; 2023 - EduReview360 - All Rights Reserved</p>
+      <p class="my-0">Designed by Gayathri Priyanka Ramesh</p>
     </footer>
     <!-- --------------------------------------------------End of Footer-------------------------------------------------- -->
   `,

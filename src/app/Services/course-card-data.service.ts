@@ -78,6 +78,8 @@ export class CourseCardDataService {
         instructorName: 'Garcia',
         startDate: '01/03/2024',
         rating: 5,
+        participantCount: 12,
+        applicantCount: 24,
       },
       {
         id: 2,
@@ -87,6 +89,8 @@ export class CourseCardDataService {
         instructorName: 'Rachel Green',
         startDate: '10/03/2024',
         rating: 4,
+        participantCount: 36,
+        applicantCount: 24,
       },
       {
         id: 3,
@@ -96,6 +100,8 @@ export class CourseCardDataService {
         instructorName: 'James Harris',
         startDate: '01/04/2024',
         rating: 4,
+        participantCount: 15,
+        applicantCount: 20,
       },
       {
         id: 4,
@@ -105,6 +111,8 @@ export class CourseCardDataService {
         instructorName: 'Johnson',
         startDate: '15/04/2024',
         rating: 5,
+        participantCount: 30,
+        applicantCount: 20,
       },
     ];
   }
@@ -121,6 +129,8 @@ export class CourseCardDataService {
         instructorName: 'Matthew',
         startDate: '01/04/2024',
         rating: 4,
+        participantCount: 30,
+        applicantCount: 20,
       },
       {
         id: 2,
@@ -130,6 +140,8 @@ export class CourseCardDataService {
         instructorName: 'Kevin King',
         startDate: '01/03/2024',
         rating: 5,
+        participantCount: 25,
+        applicantCount: 35,
       },
       {
         id: 3,
@@ -139,6 +151,8 @@ export class CourseCardDataService {
         instructorName: 'Lisa Martinez',
         startDate: '15/03/2024',
         rating: 5,
+        participantCount: 29,
+        applicantCount: 23,
       },
       {
         id: 4,
@@ -148,6 +162,8 @@ export class CourseCardDataService {
         instructorName: 'Olivia Nelson',
         startDate: '15/04/2024',
         rating: 4,
+        participantCount: 48,
+        applicantCount: 8,
       },
       {
         id: 5,
@@ -157,6 +173,8 @@ export class CourseCardDataService {
         instructorName: 'Jennifer',
         startDate: '15/04/2024',
         rating: 4,
+        participantCount: 10,
+        applicantCount: 35,
       },
     ];
   }
@@ -314,7 +332,8 @@ export class CourseCardDataService {
 
   // -------------------------Stars as per Rating-------------------------
   getStars(rating: number): number[] {
-    let starCntArray = Array.from({ length: rating }, (_, index) => index);
+    let starCntArray = Array(rating);
+    // console.log('starCntArray  --->  ', starCntArray);
     return starCntArray;
   }
   // -------------------------End of Stars as per Rating-------------------------
@@ -342,6 +361,8 @@ export interface AppliedTrendingCourse {
   instructorName: string;
   startDate: string;
   rating: number;
+  participantCount: number;
+  applicantCount: number;
 }
 
 // -------------------------Blueprint of Ongoing Course Card-------------------------

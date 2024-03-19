@@ -183,8 +183,12 @@ main {
   .mandate {
     color: $mandate;
   }
-  .progress-bar {
-    background-color: $blue;
+  .progress {
+    border-radius: 20px;
+    border: 2px solid $blue;
+    .progress-bar {
+      background-color: $blue;
+    }
   }
   img {
     width: 100%;
@@ -750,10 +754,13 @@ footer {
   // -------------------------Applicant Details Table-------------------------
   .applicant-table {
     tr {
-      grid-template-columns: 75px 250px 150px 125px 200px 200px 100px;
+      grid-template-columns: 75px 250px 150px 125px 175px 250px 100px;
     }
     td:nth-child(2) {
       text-align: start;
+    }
+    td:nth-child(6) {
+      text-align: justify;
     }
   }
   // -------------------------Styling Data Table-------------------------
@@ -1023,7 +1030,7 @@ footer {
     // -------------------------Applicant Details Table-------------------------
     .applicant-table {
       tr {
-        grid-template-columns: 55px 150px 110px 100px 150px 150px 75px;
+        grid-template-columns: 55px 150px 110px 100px 125px 200px 75px;
       }
     }
   }

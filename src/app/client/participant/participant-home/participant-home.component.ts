@@ -4,8 +4,6 @@ import {
   EnrolledCourse,
   AppliedTrendingCourse,
 } from '../../../Services/course-card-data.service';
-import { Router } from '@angular/router';
-import { AuthService } from '../../../Services/auth.service';
 import { NavigationService } from '../../../Services/navigation.service';
 
 @Component({
@@ -28,15 +26,17 @@ export class ParticipantHomeComponent implements OnInit, AfterViewInit {
 
   constructor(
     private courseCardData: CourseCardDataService,
-    private auth: AuthService,
-    private router: Router,
     private navigation: NavigationService
   ) {}
 
   ngOnInit(): void {
     // -------------------------Login Session-------------------------
-    this.userName = localStorage.getItem('userName') as string;
-    // console.log('Username  ---> ', this.userName);
+    if (typeof localStorage !== 'undefined') {
+      this.userName = localStorage.getItem('userName') as string;
+      // console.log('Username  ---> ', this.userName);
+    } else {
+      // console.log('Local Storage is not available');
+    }
     // -------------------------End of Login Session-------------------------
 
     // -------------------------Retrieve Required Data-------------------------
@@ -55,7 +55,11 @@ export class ParticipantHomeComponent implements OnInit, AfterViewInit {
         title: 'Enrolled Courses',
         href: 'enrolled-courses',
       },
-      { value: 4, title: 'Applied Courses', href: 'applied-courses' },
+      {
+        value: this.appliedCourses.length,
+        title: 'Applied Courses',
+        href: 'applied-courses',
+      },
       { value: 6, title: 'Feedback Submitted', href: '' },
     ];
     // -------------------------End of Info Area Rings Data-------------------------

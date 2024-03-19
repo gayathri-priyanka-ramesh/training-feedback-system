@@ -80,20 +80,6 @@
     </h3>
     <!-- -------------------------End of Admin (Instructor - Upcoming)------------------------- -->
 
-    <!-- -------------------------Instructor (Ongoing)------------------------- -->
-    <ng-container *ngIf="isOngoingCourse">
-      <p class="card-text">
-        <b>No. of Participants:</b> {{ ongoingCourseData.participants }}
-      </p>
-      <p class="card-text">
-        <b>Feedback Received:</b> {{ ongoingCourseData.feedbackReceived }}
-      </p>
-      <app-progress-bar
-        [progressValue]="ongoingCourseData.progress"
-      ></app-progress-bar>
-    </ng-container>
-    <!-- -------------------------End of Instructor (Ongoing)------------------------- -->
-
     <!-- -------------------------Participant / Instructor------------------------- -->
     <h3
       class="card-title"
@@ -112,6 +98,20 @@
       >
     </h3>
     <!-- -------------------------End of Participant / Instructor------------------------- -->
+
+    <!-- -------------------------Instructor (Ongoing)------------------------- -->
+    <ng-container *ngIf="isOngoingCourse">
+      <p class="card-text">
+        <b>No. of Participants:</b> {{ ongoingCourseData.participants }}
+      </p>
+      <p class="card-text">
+        <b>Feedback Received:</b> {{ ongoingCourseData.feedbackReceived }}
+      </p>
+      <app-progress-bar
+        [progressValue]="ongoingCourseData.progress"
+      ></app-progress-bar>
+    </ng-container>
+    <!-- -------------------------End of Instructor (Ongoing)------------------------- -->
 
     <!-- -------------------------Instructor (Upcoming)------------------------- -->
     <ng-container *ngIf="isUpcomingCourse">

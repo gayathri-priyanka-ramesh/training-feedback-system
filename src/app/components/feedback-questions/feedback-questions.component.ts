@@ -234,10 +234,11 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
       );
       // -------------------------Valid Form Submission-------------------------
       if (!this.emptyQuestionField && this.validQuestionLength) {
-        // console.log('Valid Question Form');
+        console.log('Valid Question Form');
         this.validForm = true;
         this.modalMessage = 'Feedback form is created successfully!';
         this.modalConfirmMessage = 'View Form Preview';
+        this.uploadQuestions();
         this.submitResultButton.click();
       }
     }
@@ -270,7 +271,6 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
     }
 
     // -------------------------Navigation After POST-------------------------
-    this.router.navigate([this.route], { fragment: 'pageTitle' });
     // console.log('Form Uploaded in JSON Server');
     this.questionsForm.reset();
   }

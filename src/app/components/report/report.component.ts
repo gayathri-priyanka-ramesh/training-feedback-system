@@ -33,6 +33,10 @@ import { Chart } from 'chart.js';
 export class ReportComponent implements OnInit {
   constructor(private reportService: ReportService) {}
 
+  // --------------------------------------------------Chart Info--------------------------------------------------
+  color: string[] = ['#1c375f', '#4c6181', '#7c8ba3', '#abb5c4', '#dbdfe6'];
+  // --------------------------------------------------End of Chart Info--------------------------------------------------
+
   ngOnInit(): void {
     // --------------------------------------------------Report Data Retrieval and Generation of Charts--------------------------------------------------
     this.reportService.getFeedbackData().subscribe((feedbackData) => {
@@ -45,108 +49,96 @@ export class ReportComponent implements OnInit {
 
   // --------------------------------------------------Training Evaluation--------------------------------------------------
   private generateTrainingEvaluationChart(trainingRating: string[]): void {
-    var trainingEvaluation = document.getElementById(
-      'training-evaluation'
-    ) as HTMLCanvasElement;
-    new Chart(trainingEvaluation, {
-      type: 'doughnut',
-      data: {
-        labels: [
-          'Excellent',
-          'Above Average',
-          'Average',
-          'Below Average',
-          'Poor',
-        ],
-        datasets: [
-          {
-            data: [35, 45, 55, 25, 15],
-            backgroundColor: [
-              '#1c375f',
-              '#4c6181',
-              '#7c8ba3',
-              '#abb5c4',
-              '#dbdfe6',
-            ],
-            hoverOffset: 6,
-          },
-        ],
-      },
-    });
-    // console.log('Training Evaluation Chart Generated');
+    if (typeof document !== 'undefined') {
+      var trainingEvaluation = document.getElementById(
+        'training-evaluation'
+      ) as HTMLCanvasElement;
+      new Chart(trainingEvaluation, {
+        type: 'doughnut',
+        data: {
+          labels: Array.from(new Set(trainingRating)),
+          datasets: [
+            {
+              data: [35, 45, 55, 25, 15],
+              backgroundColor: this.color,
+              hoverOffset: 6,
+            },
+          ],
+        },
+      });
+      // console.log('Training Evaluation Chart Generated');
+    } else {
+      // console.log('Document is not available');
+    }
   }
   // --------------------------------------------------End of Training Evaluation--------------------------------------------------
 
   // --------------------------------------------------Instructor Evaluation--------------------------------------------------
   private generateInstructorEvaluationChart(instructorRating: string[]): void {
-    var instructorEvaluation = document.getElementById(
-      'instructor-evaluation'
-    ) as HTMLCanvasElement;
-    new Chart(instructorEvaluation, {
-      type: 'pie',
-      data: {
-        labels: [
-          'Excellent',
-          'Above Average',
-          'Average',
-          'Below Average',
-          'Poor',
-        ],
-        datasets: [
-          {
-            data: [25, 50, 50, 15, 25],
-            backgroundColor: [
-              '#1c375f',
-              '#4c6181',
-              '#7c8ba3',
-              '#abb5c4',
-              '#dbdfe6',
-            ],
-            hoverOffset: 6,
-          },
-        ],
-      },
-    });
-    // console.log('Instructor Evaluation Chart Generated');
+    if (typeof document !== 'undefined') {
+      var instructorEvaluation = document.getElementById(
+        'instructor-evaluation'
+      ) as HTMLCanvasElement;
+      new Chart(instructorEvaluation, {
+        type: 'pie',
+        data: {
+          labels: Array.from(new Set(instructorRating)),
+          datasets: [
+            {
+              data: [25, 50, 50, 15, 25],
+              backgroundColor: this.color,
+              hoverOffset: 6,
+            },
+          ],
+        },
+      });
+      // console.log('Instructor Evaluation Chart Generated');
+    } else {
+      // console.log('Document is not available');
+    }
   }
   // --------------------------------------------------End of Instructor Evaluation--------------------------------------------------
 
   // --------------------------------------------------Overall Evaluation--------------------------------------------------
   private generateOverallEvaluationChart(feedbackData: any): void {
-    var overallEvaluation = document.getElementById(
-      'overall-evaluation'
-    ) as HTMLCanvasElement;
-    new Chart(overallEvaluation, {
-      type: 'bar',
-      data: {
-        labels: feedbackData.labels,
-        datasets: [
-          {
-            label: 'Training Rating',
-            data: feedbackData.trainingRating.map(this.getRatingValue),
-            backgroundColor: '#344c70',
-          },
-          {
-            label: 'Instructor Rating',
-            data: feedbackData.instructorRating.map(this.getRatingValue),
-            backgroundColor: '#abb5c4',
-          },
-        ],
-      },
-      options: {
-        scales: {
-          x: {
-            stacked: true,
-            beginAtZero: true,
-          },
-          y: {
-            stacked: true,
-            beginAtZero: true,
+    if (typeof document !== 'undefined') {
+      var overallEvaluation = document.getElementById(
+        'overall-evaluation'
+      ) as HTMLCanvasElement;
+      new Chart(overallEvaluation, {
+        type: 'bar',
+        data: {
+          labels: feedbackData.labels,
+          datasets: [
+            {
+              label: 'Training Rating',
+              data: feedbackData.trainingRating.map(this.getRatingValue),
+              backgroundColor: this.color[0],
+            },
+            {
+              label: 'Instructor Rating',
+              data: feedbackData.instructorRating.map(this.getRatingValue),
+              backgroundColor: this.color[3],
+            },
+          ],
+        },
+        options: {
+          scales: {
+            x: {
+              stacked: true,
+              beginAtZero: true,
+            },
+            y: {
+              stacked: true,
+              beginAtZero: true,
+            },
           },
         },
-      },
-    });
-    // console.log('Overall Evaluation Chart Generated');
+      });
+      // console.log('Overall Evaluation Chart Generated');
+    } else {
+      // console.log('Document is not available');
+    }
   }
   // --------------------------------------------------End of Overall Evaluation--------------------------------------------------
 

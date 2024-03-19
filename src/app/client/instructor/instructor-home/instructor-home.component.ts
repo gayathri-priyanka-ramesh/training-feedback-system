@@ -28,15 +28,15 @@ export class InstructorHomeComponent implements OnInit, AfterViewInit {
 
   constructor(
     private courseCardData: CourseCardDataService,
-    private auth: AuthService,
-    private router: Router,
     private navigation: NavigationService
   ) {}
 
   ngOnInit(): void {
     // -------------------------Login Session-------------------------
-    this.userName = localStorage.getItem('userName') as string;
-    // console.log('Username  ---> ', this.userName);
+    if (typeof localStorage !== 'undefined') {
+      this.userName = localStorage.getItem('userName') as string;
+      // console.log('Username  ---> ', this.userName);
+    }
     // -------------------------End of Login Session-------------------------
 
     // -------------------------Retrieve Required Data-------------------------

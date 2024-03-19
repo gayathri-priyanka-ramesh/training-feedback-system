@@ -14,10 +14,7 @@ export class ParticipantAppliedCourseComponent
   implements OnInit, AfterViewInit
 {
   // -------------------------Info Area Rings-------------------------
-  ringsData: { value: number; title: string; href: string }[] = [
-    { value: 10, title: 'Participants Applied', href: '' },
-    { value: 25, title: 'Participants Enrolled', href: '' },
-  ];
+  ringsData: { value: number; title: string; href: string }[];
   // -------------------------End of Info Area Rings-------------------------
 
   // -------------------------Retrieve Required Data-------------------------
@@ -53,6 +50,21 @@ export class ParticipantAppliedCourseComponent
       this.requiredCourse = this.courseCardData.getAppliedCourses()[id - 1];
       // console.log('Required Course  ---> ', this.requiredCourse);
       this.starArray = this.courseCardData.getStars(this.requiredCourse.rating);
+
+      // -------------------------Info Area Rings Data-------------------------
+      this.ringsData = [
+        {
+          value: this.requiredCourse.participantCount,
+          title: 'Participants Applied',
+          href: '',
+        },
+        {
+          value: this.requiredCourse.applicantCount,
+          title: 'Participants Enrolled',
+          href: '',
+        },
+      ];
+      // -------------------------End of Info Area Rings Data-------------------------
     });
 
     // -------------------------Trending Courses-------------------------

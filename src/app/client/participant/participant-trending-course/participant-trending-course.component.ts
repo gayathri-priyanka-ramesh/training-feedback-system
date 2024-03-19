@@ -20,10 +20,7 @@ export class ParticipantTrendingCourseComponent
   // -------------------------End of Retrieve Required Data-------------------------
 
   // -------------------------Info Area Rings-------------------------
-  ringsData: { value: number; title: string; href: string }[] = [
-    { value: 30, title: 'Participants Applied', href: '' },
-    { value: 20, title: 'Participants Enrolled', href: '' },
-  ];
+  ringsData: { value: number; title: string; href: string }[];
   // -------------------------End of Info Area Rings-------------------------
 
   // -------------------------Modal Variables-------------------------
@@ -61,6 +58,21 @@ export class ParticipantTrendingCourseComponent
       this.requiredCourse = this.courseCardData.getTrendingCourses()[id - 1];
       // console.log('Required Course  ---> ', this.requiredCourse);
       this.starArray = this.courseCardData.getStars(this.requiredCourse.rating);
+
+      // -------------------------Info Area Rings Data-------------------------
+      this.ringsData = [
+        {
+          value: this.requiredCourse.participantCount,
+          title: 'Participants Applied',
+          href: '',
+        },
+        {
+          value: this.requiredCourse.applicantCount,
+          title: 'Participants Enrolled',
+          href: '',
+        },
+      ];
+      // -------------------------End of Info Area Rings Data-------------------------
 
       // -------------------------Trending Courses-------------------------
       this.trendingCourses = this.courseCardData

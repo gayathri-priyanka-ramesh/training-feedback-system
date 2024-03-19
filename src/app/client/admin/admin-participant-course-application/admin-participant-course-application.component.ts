@@ -106,16 +106,19 @@ export class AdminParticipantCourseApplicationComponent implements OnInit {
     // console.log('Applicant Status  ---> ', approvalStatus);
     // console.log('Applicant Comment  ---> ', approvalComment);
 
+    // -------------------------Validate Approval Choice-------------------------
     if (approvalStatus !== 'Approved' && approvalStatus !== 'Disapproved') {
       this.statusValidation = true;
-    } else if (approvalComment === '') {
+    }
+
+    // -------------------------Validate Approval Reason-------------------------
+    else if (approvalComment === '') {
       this.commentValidation = true;
-    } else {
+    }
+
+    // -------------------------Valid Approval Data-------------------------
+    else {
       // console.log('Submit Success');
-      let closeRef: HTMLAnchorElement = document.getElementById(
-        'submit-result'
-      ) as HTMLAnchorElement;
-      closeRef?.click();
     }
   }
   // -------------------------End of Form Submission-------------------------

@@ -35,7 +35,7 @@
             (click)="editApprovalStatus(applicant)"
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#approvalStatus"
           >
             <i class="fa-solid fa-pen-to-square"></i
           ></a>
@@ -50,9 +50,9 @@
 <!-- --------------------------------------------------Applicant Modal-------------------------------------------------- -->
 <div
   class="modal fade"
-  id="exampleModal"
+  id="approvalStatus"
   tabindex="-1"
-  aria-labelledby="exampleModalLabel"
+  aria-labelledby="approvalStatusLabel"
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered">
@@ -67,6 +67,7 @@
             aria-label="Close"
             id="close"
             (click)="applicantForm.reset()"
+            (click)="getApprovalStatus()"
           ></button>
         </div>
         <!-- -------------------------End of Modal Header------------------------- -->

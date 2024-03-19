@@ -1,6 +1,6 @@
 // --------------------------------------------------Default Imports--------------------------------------------------
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, ExtraOptions } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 // --------------------------------------------------End of Default Imports--------------------------------------------------
 
 // --------------------------------------------------User Components--------------------------------------------------
@@ -459,7 +459,7 @@ const routes: Routes = [
                 { label: 'Home', url: '/admin/home' },
                 {
                   label: '{{participantName}}',
-                  url: '/admin/home/participant/:id/:participantName',
+                  url: '/admin/home/participant/:pid/:participantName',
                 },
                 { label: '{{courseName}}', url: '' },
               ],
@@ -475,7 +475,7 @@ const routes: Routes = [
                 { label: 'Home', url: '/admin/home' },
                 {
                   label: '{{participantName}}',
-                  url: '/admin/home/participant/:id/:participantName',
+                  url: '/admin/home/participant/:pid/:participantName',
                 },
                 { label: '{{courseName}}', url: '' },
               ],
@@ -487,10 +487,6 @@ const routes: Routes = [
   },
   // --------------------------------------------------End of Admin Page--------------------------------------------------
 ];
-
-const routerOptions: ExtraOptions = {
-  anchorScrolling: 'enabled',
-};
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
