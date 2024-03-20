@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +18,11 @@ export class FeedbackResponseService {
         // console.log('-----GET-----');
         // console.log('Result  ---> ',z result);
         return result;
+      }),
+      catchError((error: any) => {
+        // console.log('-----GET Error-----');
+        // console.log('Error  ---> ', error);
+        return throwError(error);
       })
     );
   }
@@ -30,6 +35,11 @@ export class FeedbackResponseService {
         // console.log('-----PUT-----');
         // console.log('Result  ---> ', result);
         return result;
+      }),
+      catchError((error: any) => {
+        // console.log('-----PUT Error-----');
+        // console.log('Error  ---> ', error);
+        return throwError(error);
       })
     );
   }
@@ -42,6 +52,11 @@ export class FeedbackResponseService {
         // console.log('-----POST-----');
         // console.log('Result  ---> ', result);
         return result;
+      }),
+      catchError((error: any) => {
+        // console.log('-----POST Error-----');
+        // console.log('Error  ---> ', error);
+        return throwError(error);
       })
     );
   }

@@ -3,7 +3,10 @@
   <h1 id="pageTitle">{{ requiredCourse.courseName }}</h1>
   <h2>Give Your {{ moduleInfo }} Feedback</h2>
   <!-- --------------------------------------------------Form Area-------------------------------------------------- -->
-  <app-feedback-form [route]="route"></app-feedback-form>
+  <app-feedback-form
+    [route]="route"
+    [moduleCnt]="+moduleInfo.slice(-1)"
+  ></app-feedback-form>
   <!-- --------------------------------------------------End of Form Area-------------------------------------------------- -->
 </main>
 <!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->

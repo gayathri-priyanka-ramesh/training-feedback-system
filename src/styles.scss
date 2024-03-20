@@ -515,6 +515,10 @@ footer {
         border: 2px solid $light;
         opacity: 0;
       }
+      // -------------------------Disable Feedback Preview Form-------------------------
+      .formPreview {
+        pointer-events: none;
+      }
     }
     .choices {
       column-gap: 15px;

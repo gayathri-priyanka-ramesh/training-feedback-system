@@ -49,6 +49,7 @@
             <label
               [for]="trainingQuestionIds[i] + '-' + (j + 1)"
               [attr.data]="j + 1"
+              [class.formPreview]="formPreview"
             ></label>
           </ng-container>
           <div class="option-position"></div>
@@ -87,6 +88,7 @@
             <label
               [for]="instructorQuestionIds[i] + '-' + (j + 1)"
               [attr.data]="j + 1"
+              [ngClass]="{ formPreview: formPreview }"
             ></label>
           </ng-container>
           <div class="option-position"></div>

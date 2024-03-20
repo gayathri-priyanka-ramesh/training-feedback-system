@@ -85,8 +85,7 @@
             id="ratingWarning"
             class="validation"
             *ngIf="
-              questionsForm.get('ratingRange')?.invalid &&
-              questionsForm.get('ratingRange')?.touched
+              formFields.ratingRange?.invalid && formFields.ratingRange?.touched
             "
           >
             Choice of rating range is required

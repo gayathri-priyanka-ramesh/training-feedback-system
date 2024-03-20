@@ -13,6 +13,7 @@ export class FeedbackFormComponent implements OnInit {
   @Input() formPreview: boolean;
   @Input() route: string;
   @Input() editRoute: string;
+  @Input() moduleCnt: number;
   // -------------------------End of Input Required Variables-------------------------
 
   // -------------------------Feedback Form Info-------------------------
@@ -87,6 +88,7 @@ export class FeedbackFormComponent implements OnInit {
     if (this.formPreview) {
       this.confirmModalConfirmMessage = 'View Course';
       this.confirmModalButtonMessage = 'No';
+      this.feedbackForm.disable();
     }
     // -------------------------End of Set Feedback Form Info-------------------------
   }
@@ -97,11 +99,13 @@ export class FeedbackFormComponent implements OnInit {
       (res) => {
         // -------------------------Form Values-------------------------
         // console.log('GET Success  ---> ', res);
-        this.anonymous = res[res.length - 1].anonymous;
+        const currentQuestion = res[res.length - 1];
+        // console.log('currentQuestion  ---> ', currentQuestion);
+        this.anonymous = currentQuestion.anonymous;
         // console.log('anonymous  ---> ', this.anonymous);
-        this.additionalComment = res[res.length - 1].additionalComment;
+        this.additionalComment = currentQuestion.additionalComment;
         // console.log('additionalComment  ---> ', this.additionalComment);
-        let questionSets = res[res.length - 1].questionSets;
+        let questionSets = currentQuestion.questionSets;
         // console.log('questionSets  ---> ', questionSets);
         let trainingQuestionSet = questionSets[0].questions;
 
@@ -174,8 +178,10 @@ export class FeedbackFormComponent implements OnInit {
     // console.log('Form Initialized');
   }
   // -------------------------Dynamic Control Generation-------------------------
-  private generateFormControls(questionIds: string[]): { [key: string]: any } {
-    const controls: { [key: string]: any } = {};
+  private generateFormControls(questionIds: string[]): {
+    [key: string]: [string];
+  } {
+    const controls: { [key: string]: [string] } = {};
     questionIds.forEach((id) => {
       controls[id] = [''];
     });
@@ -189,8 +195,8 @@ export class FeedbackFormComponent implements OnInit {
     // -------------------------Training Evaluation-------------------------
     this.trainingCount = 0;
     for (let i of this.trainingQuestionIds) {
-      const ans = this.feedbackForm.value[i];
-      // console.log('Value of', i, ' ---> ', ans);
+      const ans = this.feedbackForm.value;
+      console.log('Value of', i, ' ---> ', ans);
       if (ans) this.trainingCount++;
     }
     // console.log('Training Count  ---> ', this.trainingCount);
@@ -254,6 +260,7 @@ export class FeedbackFormComponent implements OnInit {
         'userName'
       ) as string;
     }
+    this.participantFeedbackResponseObj.module = this.moduleCnt;
     this.participantFeedbackResponseObj.date = this.getCurrentDate();
     this.participantFeedbackResponseObj.content =
       this.feedbackForm.value.content;
@@ -317,8 +324,8 @@ export class FeedbackFormComponent implements OnInit {
   uploadForm() {
     this.modalMessage =
       'Are you sure to upload the Feedback Form? It cannot be editted further';
-    this.modalConfirmMessage = 'Upload';
-    this.modalButtonMessage = 'Cancel';
+    this.modalConfirmMessage = 'Yes, Upload';
+    this.modalButtonMessage = "No, Don't Upload";
     this.confirmModalMessage =
       "Your Form has been uploaded! Wait for Participant's Response";
   }

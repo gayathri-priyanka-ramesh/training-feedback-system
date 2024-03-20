@@ -41,8 +41,7 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private feedbackQuestionApi: FeedbackQuestionsService,
-    private router: Router
+    private feedbackQuestionApi: FeedbackQuestionsService
   ) {}
 
   // --------------------------------------------------Feedback Question Form--------------------------------------------------
@@ -102,6 +101,10 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
   }
   // --------------------------------------------------End of Form Initialization--------------------------------------------------
 
+  get formFields() {
+    return this.questionsForm.controls;
+  }
+
   // --------------------------------------------------Load Form Values--------------------------------------------------
   loadFeedbackQuestionValue() {
     this.questionsForm.patchValue(this.requiredQuestionForm);
@@ -148,7 +151,8 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
 
   // -------------------------Add Question Field-------------------------
   addQuestion(index: number) {
-    const questions = this.questionSets.at(index).get('questions') as FormArray;
+    const questionSetToAdd = this.questionSets.at(index);
+    const questions = questionSetToAdd.get('questions') as FormArray;
     // console.log('questions  ---> ', questions);
     questions.push(this.createQuestion());
     // console.log('questions (after ADD)  ---> ', questions);
@@ -165,12 +169,12 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
 
   // -------------------------Confirm Remove Question Field-------------------------
   confirmRemove() {
-    const questions = this.questionSets
+    const questionsForRemove = this.questionSets
       .at(this.removeIndex[0])
       .get('questions') as FormArray;
-    // console.log('questions  ---> ', questions);
-    questions.removeAt(this.removeIndex[1]);
-    // console.log('questions (after DELETE)  ---> ', questions);
+    console.log('questionsForRemove  ---> ', questionsForRemove);
+    questionsForRemove.removeAt(this.removeIndex[1]);
+    console.log('questionsForRemove (after DELETE)  ---> ', questionsForRemove);
   }
   // --------------------------------------------------End of Fieldsets Action--------------------------------------------------
 
@@ -248,12 +252,13 @@ export class FeedbackQuestionsComponent implements OnInit, AfterViewInit {
   // --------------------------------------------------POST Question Form--------------------------------------------------
   uploadQuestions() {
     const formData = this.questionsForm.value;
+    console.log('FormData  ---> ', formData);
     if (this.editFeedback) {
       this.feedbackQuestionApi
         .editFeedbackQuestions(formData, this.requiredQuestionForm.id)
         .subscribe(
           (response) => {
-            // console.log('PUT Success  ---> ', response);
+            console.log('PUT Success  ---> ', response);
           },
           (error) => {
             // console.log('PUT Fail  ---> ', error);
