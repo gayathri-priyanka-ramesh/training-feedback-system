@@ -32,7 +32,7 @@ export class ParticipantHomeComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // -------------------------Login Session-------------------------
     if (typeof localStorage !== 'undefined') {
-      this.userName = localStorage.getItem('userName') as string;
+      this.userName = localStorage.getItem('participant-userName') as string;
       // console.log('Username  ---> ', this.userName);
     } else {
       // console.log('Local Storage is not available');

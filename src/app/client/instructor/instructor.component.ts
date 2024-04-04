@@ -15,7 +15,7 @@ export class InstructorComponent implements OnInit {
   ngOnInit(): void {
     // --------------------------------------------------Login Session--------------------------------------------------
     if (typeof localStorage !== 'undefined') {
-      this.email = localStorage.getItem('email') as string;
+      this.email = localStorage.getItem('instructor-email') as string;
       // console.log('Email  ---> ', this.email);
     } else {
       // console.log('Local Storage is not available');

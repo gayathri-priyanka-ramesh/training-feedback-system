@@ -126,7 +126,8 @@ export class LoginFormComponent {
       // -------------------------Login Session-------------------------
       if (this.navigatePermit) {
         if (typeof localStorage !== 'undefined') {
-          localStorage.setItem('email', usernameValue);
+          localStorage.setItem(`userType`, submitUser as string);
+          localStorage.setItem(`${submitUser}-email`, usernameValue);
           let nameString = usernameValue.split('@')[0];
           let firstname = nameString.split('_')[0];
           let lastname = nameString.split('_')[1];
@@ -136,7 +137,7 @@ export class LoginFormComponent {
             ' ' +
             lastname?.charAt(0).toUpperCase() +
             lastname?.substring(1);
-          localStorage.setItem('userName', this.userName);
+          localStorage.setItem(`${submitUser}-userName`, this.userName);
           // console.log('Local Stroage  ---> ', localStorage);
           this.loginForm.reset();
         } else {

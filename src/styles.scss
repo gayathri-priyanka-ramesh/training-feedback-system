@@ -267,7 +267,8 @@ footer {
   // -------------------------Testing Credentials-------------------------
   .login-credentials {
     color: $blue;
-    dl {
+    dl,
+    small {
       color: $dark;
       text-align: left;
       dt {

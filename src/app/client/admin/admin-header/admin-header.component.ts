@@ -15,7 +15,7 @@ export class AdminHeaderComponent implements OnInit {
   ngOnInit(): void {
     // --------------------------------------------------Login Session--------------------------------------------------
     if (typeof localStorage !== 'undefined') {
-      this.email = localStorage.getItem('email') as string;
+      this.email = localStorage.getItem('admin-email') as string;
       // console.log('Email  ---> ', this.email);
     }
     // --------------------------------------------------End of Login Session--------------------------------------------------

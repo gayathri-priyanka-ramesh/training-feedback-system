@@ -34,7 +34,7 @@ export class InstructorHomeComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // -------------------------Login Session-------------------------
     if (typeof localStorage !== 'undefined') {
-      this.userName = localStorage.getItem('userName') as string;
+      this.userName = localStorage.getItem('instructor-userName') as string;
       // console.log('Username  ---> ', this.userName);
     }
     // -------------------------End of Login Session-------------------------

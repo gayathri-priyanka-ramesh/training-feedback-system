@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // --------------------------------------------------End of Default Imports--------------------------------------------------
 
+// --------------------------------------------------End of Router Guard--------------------------------------------------
+import { AuthGuardService } from './Services/auth-guard.service';
+// --------------------------------------------------End of Router Guard--------------------------------------------------
+
 // --------------------------------------------------User Components--------------------------------------------------
 import { LoginComponent } from './client/login/login.component';
 
@@ -55,6 +59,7 @@ const routes: Routes = [
   {
     path: 'participant',
     component: ParticipantComponent,
+    canActivateChild: [AuthGuardService],
     children: [
       // -------------------------Participant Home-------------------------
       {
@@ -167,6 +172,7 @@ const routes: Routes = [
   {
     path: 'instructor',
     component: InstructorComponent,
+    canActivateChild: [AuthGuardService],
     children: [
       // -------------------------Instructor Home-------------------------
       {
@@ -269,6 +275,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivateChild: [AuthGuardService],
     children: [
       // -------------------------Admin Login-------------------------
       {

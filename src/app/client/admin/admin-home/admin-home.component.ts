@@ -42,7 +42,9 @@ export class AdminHomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     // -------------------------Login Session-------------------------
     if (typeof localStorage !== 'undefined') {
-      this.username = localStorage.getItem('email')?.split('@')[0] as string;
+      this.username = localStorage
+        .getItem('admin-email')
+        ?.split('@')[0] as string;
       // console.log('Username  ---> ', this.username);
     }
     // -------------------------End of Login Session-------------------------
