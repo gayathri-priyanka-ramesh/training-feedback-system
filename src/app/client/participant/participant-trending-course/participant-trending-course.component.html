@@ -45,6 +45,7 @@
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#staticBackdrop"
+        (click)="applyCourse(requiredCourse.courseName)"
       >
         Apply Course
       </button>
@@ -63,14 +64,17 @@
   <!-- --------------------------------------------------End of Hero Section-------------------------------------------------- -->
 
   <!-- --------------------------------------------------Other Trending Course Area-------------------------------------------------- -->
-  <h2>Explore Other Trending Courses</h2>
-  <!-- -------------------------Cards------------------------- -->
-  <div class="courses row">
-    <div class="col" *ngFor="let course of trendingCourses">
-      <app-course-card [courseData]="course"></app-course-card>
+
+  <ng-container *ngIf="trendingCourses.length > 0">
+    <h2>Explore Other Trending Courses</h2>
+    <!-- -------------------------Cards------------------------- -->
+    <div class="courses row">
+      <div class="col" *ngFor="let course of trendingCourses">
+        <app-course-card [courseData]="course"></app-course-card>
+      </div>
     </div>
-  </div>
-  <!-- -------------------------End of Cards------------------------- -->
+    <!-- -------------------------End of Cards------------------------- -->
+  </ng-container>
   <!-- --------------------------------------------------End of Other Trending Course Area-------------------------------------------------- -->
 </main>
 <!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->

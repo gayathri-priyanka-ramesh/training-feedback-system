@@ -275,7 +275,6 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivateChild: [AuthGuardService],
     children: [
       // -------------------------Admin Login-------------------------
       {
@@ -286,6 +285,7 @@ const routes: Routes = [
       {
         path: 'home',
         component: AdminHeaderComponent,
+        canActivateChild: [AuthGuardService],
         children: [
           {
             path: '',
@@ -493,6 +493,9 @@ const routes: Routes = [
     ],
   },
   // --------------------------------------------------End of Admin Page--------------------------------------------------
+
+  // --------------------------------------------------Unknown Page--------------------------------------------------
+  { path: '**', redirectTo: '', component: LoginComponent },
 ];
 
 @NgModule({

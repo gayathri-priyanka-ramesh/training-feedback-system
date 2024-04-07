@@ -17,6 +17,7 @@ export class ParticipantTrendingCourseComponent
   requiredCourse: AppliedTrendingCourse;
   starArray: number[];
   trendingCourses: AppliedTrendingCourse[];
+  appliedCoursesStored: string[];
   // -------------------------End of Retrieve Required Data-------------------------
 
   // -------------------------Info Area Rings-------------------------
@@ -74,14 +75,38 @@ export class ParticipantTrendingCourseComponent
       ];
       // -------------------------End of Info Area Rings Data-------------------------
 
+      // -------------------------Retrieve Applied Courses from Local Storage-------------------------
+      this.appliedCoursesStored = this.courseCardData.getAppliedCoursesStored();
+      // -------------------------End of Retrieve Applied Courses from Local Storage-------------------------
+
       // -------------------------Trending Courses-------------------------
       this.trendingCourses = this.courseCardData
         .getTrendingCourses()
-        .filter((course: any) => course.id !== this.requiredCourse.id);
+        .filter(
+          (course: any) =>
+            course.id !== this.requiredCourse.id &&
+            !this.appliedCoursesStored?.includes(course.courseName)
+        );
       // console.log('Trending Courses Array  ---> ', this.trendingCourses);
     });
     // --------------------------------------------------End of Required Data Retrival--------------------------------------------------
   }
+
+  // --------------------------------------------------Apply Course--------------------------------------------------
+  applyCourse(requiredCourseName: string) {
+    // console.log('Current Applied Course  ---> ', requiredCourseName);
+    if (typeof localStorage !== 'undefined') {
+      this.appliedCoursesStored.push(requiredCourseName);
+      localStorage.setItem(
+        'appliedCoursesStored',
+        JSON.stringify(this.appliedCoursesStored)
+      );
+    } else {
+      // console.log('Local Storage is not available');
+    }
+    // console.log('Applied Courses Stored  ---> ', this.appliedCoursesStored);
+  }
+  // --------------------------------------------------End of Apply Course--------------------------------------------------
 
   ngAfterViewInit(): void {
     // -------------------------Fragment Routing-------------------------

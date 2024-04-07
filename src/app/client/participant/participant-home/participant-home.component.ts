@@ -22,6 +22,7 @@ export class ParticipantHomeComponent implements OnInit, AfterViewInit {
   enrolledCourses: EnrolledCourse[];
   appliedCourses: AppliedTrendingCourse[];
   trendingCourses: AppliedTrendingCourse[];
+  appliedCoursesStored: string[];
   // -------------------------End of Retrieve Required Data-------------------------
 
   constructor(
@@ -39,12 +40,31 @@ export class ParticipantHomeComponent implements OnInit, AfterViewInit {
     }
     // -------------------------End of Login Session-------------------------
 
+    // -------------------------Retrieve Applied Courses from Local Storage-------------------------
+    this.appliedCoursesStored = this.courseCardData.getAppliedCoursesStored();
+    // -------------------------End of Retrieve Applied Courses from Local Storage-------------------------
+
     // -------------------------Retrieve Required Data-------------------------
     this.enrolledCourses = this.courseCardData.getEnrolledCourses();
     // console.log('Enrolled Courses Array  ---> ', this.enrolledCourses);
+
     this.appliedCourses = this.courseCardData.getAppliedCourses();
+    this.appliedCoursesStored.forEach((courseApplied: string) => {
+      const appliedCourseInfo: AppliedTrendingCourse = this.courseCardData
+        .getTrendingCourses()
+        .find(
+          (course: AppliedTrendingCourse) => course.courseName === courseApplied
+        ) as AppliedTrendingCourse;
+      appliedCourseInfo.route = '/participant/appliedCourse';
+      this.appliedCourses.unshift(appliedCourseInfo as AppliedTrendingCourse);
+    });
     // console.log('Applied Courses Array  ---> ', this.appliedCourses);
-    this.trendingCourses = this.courseCardData.getTrendingCourses();
+
+    this.trendingCourses = this.courseCardData
+      .getTrendingCourses()
+      .filter(
+        (course: any) => !this.appliedCoursesStored.includes(course.courseName)
+      );
     // console.log('Trending Courses Array  ---> ', this.trendingCourses);
     // -------------------------End of Retrieve Required Data-------------------------
 

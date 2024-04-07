@@ -21,6 +21,7 @@ export class ParticipantAppliedCourseComponent
   requiredCourse: AppliedTrendingCourse;
   starArray: number[];
   trendingCourses: AppliedTrendingCourse[];
+  appliedCoursesStored: string[];
   // -------------------------End of Retrieve Required Data-------------------------
 
   constructor(
@@ -45,9 +46,22 @@ export class ParticipantAppliedCourseComponent
       //   'Get the Router Parameter Value (id to be retrieved) --->   ',
       //   id
       // );
+      const courseName = value.get('courseName');
+      // console.log(
+      //   'Get the Router Parameter Value (courseName to be retrieved) --->   ',
+      //   courseName
+      // );
+
+      // -------------------------Retrieve Applied Courses from Local Storage-------------------------
+      this.appliedCoursesStored = this.courseCardData.getAppliedCoursesStored();
+      // -------------------------End of Retrieve Applied Courses from Local Storage-------------------------
 
       // -------------------------Required Course-------------------------
-      this.requiredCourse = this.courseCardData.getAppliedCourses()[id - 1];
+      if (this.appliedCoursesStored.includes(courseName)) {
+        this.requiredCourse = this.courseCardData.getTrendingCourses()[id - 1];
+      } else {
+        this.requiredCourse = this.courseCardData.getAppliedCourses()[id - 1];
+      }
       // console.log('Required Course  ---> ', this.requiredCourse);
       this.starArray = this.courseCardData.getStars(this.requiredCourse.rating);
 
@@ -68,7 +82,11 @@ export class ParticipantAppliedCourseComponent
     });
 
     // -------------------------Trending Courses-------------------------
-    this.trendingCourses = this.courseCardData.getTrendingCourses();
+    this.trendingCourses = this.courseCardData
+      .getTrendingCourses()
+      .filter(
+        (course: any) => !this.appliedCoursesStored.includes(course.courseName)
+      );
     // console.log('Trending Courses Array  ---> ', this.trendingCourses);
     // --------------------------------------------------End of Required Data Retrival--------------------------------------------------
   }

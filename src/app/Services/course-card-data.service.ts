@@ -338,6 +338,21 @@ export class CourseCardDataService {
   }
   // -------------------------End of Stars as per Rating-------------------------
 
+  // -------------------------Retrieve Applied Courses from Local Storage-------------------------
+  getAppliedCoursesStored(): string[] {
+    if (typeof localStorage !== 'undefined') {
+      const appliedCoursesStored =
+        JSON.parse(localStorage.getItem('appliedCoursesStored') as string) ||
+        [];
+      console.log('AppliedCoursesStored  ---> ', appliedCoursesStored);
+      return appliedCoursesStored;
+    } else {
+      // console.log('Local Storage is not available');
+      return [];
+    }
+  }
+  // -------------------------End of Retrieve Applied Courses from Local Storage-------------------------
+
   constructor() {}
 }
 

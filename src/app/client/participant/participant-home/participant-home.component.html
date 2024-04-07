@@ -44,14 +44,19 @@
   <!-- --------------------------------------------------End of Applied Course Area-------------------------------------------------- -->
 
   <!-- --------------------------------------------------Trending Course Area-------------------------------------------------- -->
-  <h2 id="trending-courses">Trending Courses</h2>
-  <!-- -------------------------Cards------------------------- -->
-  <div class="courses row">
-    <div class="col" *ngFor="let course of trendingCourses">
-      <app-course-card [courseData]="course"></app-course-card>
+  <ng-container *ngIf="trendingCourses.length > 0; else noTrendingCourses">
+    <h2 id="trending-courses">Trending Courses</h2>
+    <!-- -------------------------Cards------------------------- -->
+    <div class="courses row">
+      <div class="col" *ngFor="let course of trendingCourses">
+        <app-course-card [courseData]="course"></app-course-card>
+      </div>
     </div>
-  </div>
-  <!-- -------------------------End of Cards------------------------- -->
+    <!-- -------------------------End of Cards------------------------- -->
+  </ng-container>
+  <ng-template #noTrendingCourses>
+    <h3 id="trending-courses">New Courses Coming Soon!</h3>
+  </ng-template>
   <!-- --------------------------------------------------End of Treding Course Area-------------------------------------------------- -->
 </main>
 <!-- --------------------------------------------------End of Main Area-------------------------------------------------- -->
