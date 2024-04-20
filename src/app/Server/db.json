@@ -54,24 +54,24 @@
     },
     {
       "id": "3",
-      "status": "Disapproved",
-      "comment": "tbgdfv",
+      "status": "Pending Approval",
+      "comment": "",
       "applicantName": "Maria White",
       "appliedDate": "05/01/2024",
       "enrolledCourses": 2
     },
     {
       "id": "4",
-      "status": "Disapproved",
-      "comment": "tebfvds",
+      "status": "Pending Approval",
+      "comment": "",
       "applicantName": "James Wilson",
       "appliedDate": "08/01/2024",
       "enrolledCourses": 1
     },
     {
       "id": "5",
-      "status": "Approved",
-      "comment": "qeffazc",
+      "status": "Pending Approval",
+      "comment": "",
       "applicantName": "Kevin Young",
       "appliedDate": "10/01/2024",
       "enrolledCourses": 5
