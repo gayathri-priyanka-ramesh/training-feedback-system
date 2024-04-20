@@ -257,7 +257,7 @@ export class FeedbackFormComponent implements OnInit {
       this.participantFeedbackResponseObj.name = 'Anonymous';
     } else {
       this.participantFeedbackResponseObj.name = localStorage.getItem(
-        'userName'
+        'participant-userName'
       ) as string;
     }
     this.participantFeedbackResponseObj.module = this.moduleCnt;
