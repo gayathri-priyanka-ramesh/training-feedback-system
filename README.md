@@ -1,9 +1,9 @@
-# Training Feedback System - Edureview360
+# Training Feedback System - EduReview360
 
 [Live Link](https://training-feedback-system.vercel.app/)
 
 ## Project Description
-‘**Edureview360**’ is a comprehensive web-based platform designed to address the challenges faced in collecting, analyzing, and utilizing feedback from participants enrolled in training programs. This **Training Feedback System** provides an efficient and centralized solution for evaluating training program effectiveness, assessing instructor performance, and identifying areas for improvement.
+‘**EduReview360**’ is a comprehensive web-based platform designed to address the challenges faced in collecting, analyzing, and utilizing feedback from participants enrolled in training programs. This **Training Feedback System** provides an efficient and centralized solution for evaluating training program effectiveness, assessing instructor performance, and identifying areas for improvement.
 
 ## User Modules
 ### Participant Module
